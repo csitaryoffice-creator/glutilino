@@ -1103,3 +1103,44 @@ body.menu-page .menu-help::after{width:90px;height:90px;left:9%;top:12px;backgro
   body.menu-page #desszert::before{width:300px;height:300px;right:-175px;top:110px;opacity:.13}
   body.menu-page #desszert::after{width:280px;height:280px;left:-165px;bottom:-55px;opacity:.14}
 }
+
+/* v35: a mintak a teljes oldalszelhez igazodnak, nem a belso wraphez */
+body.menu-page .menu-content{overflow:visible;padding-top:40px}
+body.menu-page .filter-bar{background:rgba(243,236,226,.48);border-color:rgba(59,44,34,.16)}
+body.menu-page .page-intro::before{left:calc(50% - 50vw - 105px)}
+body.menu-page #pizza::before{left:calc(50% - 50vw - 210px)}
+body.menu-page #peksutemeny::before{right:calc(50% - 50vw - 210px)}
+body.menu-page #kenyer::before{left:calc(50% - 50vw - 225px)}
+body.menu-page #kenyer::after{right:calc(50% - 50vw - 205px)}
+body.menu-page #desszert::before{right:calc(50% - 50vw - 195px)}
+body.menu-page #desszert::after{left:calc(50% - 50vw - 195px)}
+body.menu-page .menu-help{z-index:2;background:var(--brown);color:var(--cream);border:0;padding-block:70px 80px}
+body.menu-page .menu-help::before,body.menu-page .menu-help::after{content:none!important;display:none!important}
+body.menu-page .menu-help h2{color:var(--cream)}
+body.menu-page .menu-help p{margin:16px 0 26px;max-width:720px}
+
+.reviews-shell{position:relative;overflow:hidden;isolation:isolate}
+.reviews-shell::before,.reviews-shell::after{content:"";position:absolute;display:block;pointer-events:none;z-index:-1;background-position:center;background-repeat:no-repeat;background-size:contain}
+.reviews-shell::before{width:clamp(300px,30vw,470px);height:470px;left:-205px;bottom:-185px;background-image:url("decor-leaf.webp");opacity:.16;transform:rotate(-24deg)}
+.reviews-shell::after{width:clamp(330px,33vw,510px);height:510px;right:-225px;top:-185px;background-image:url("decor-pizza.webp");opacity:.13;transform:rotate(18deg)}
+.reviews{overflow:visible!important;isolation:auto!important}
+.reviews::before,.reviews::after{content:none!important;display:none!important}
+
+@media(max-width:760px){
+  body.menu-page .page-intro{padding-block:34px 20px}
+  body.menu-page .page-intro .intro{margin-top:16px}
+  body.menu-page .filter-bar{position:sticky;background:rgba(243,236,226,.56)}
+  body.menu-page .menu-content{padding-top:32px}
+  body.menu-page .menu-section:first-of-type{padding-top:22px}
+  body.menu-page .page-intro::before{left:calc(50% - 50vw - 115px)}
+  body.menu-page #pizza::before{left:calc(50% - 50vw - 155px)}
+  body.menu-page #peksutemeny::before{right:calc(50% - 50vw - 150px)}
+  body.menu-page #kenyer::before{left:calc(50% - 50vw - 165px)}
+  body.menu-page #kenyer::after{right:calc(50% - 50vw - 155px)}
+  body.menu-page #desszert::before{right:calc(50% - 50vw - 160px)}
+  body.menu-page #desszert::after{left:calc(50% - 50vw - 150px)}
+  body.menu-page .menu-help{padding-block:52px 58px}
+  body.menu-page .menu-help .button{width:auto;max-width:100%}
+  .reviews-shell::before{width:285px;height:285px;left:-155px;bottom:-115px;opacity:.15}
+  .reviews-shell::after{width:315px;height:315px;right:-175px;top:-105px;opacity:.13}
+}
