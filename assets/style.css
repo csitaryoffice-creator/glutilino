@@ -1144,3 +1144,23 @@ body.menu-page .menu-help p{margin:16px 0 26px;max-width:720px}
   .reviews-shell::before{width:285px;height:285px;left:-155px;bottom:-115px;opacity:.15}
   .reviews-shell::after{width:315px;height:315px;right:-175px;top:-105px;opacity:.13}
 }
+
+/* v37: dekoracio, mobil hero es biztosan kattinthato etlapszuro */
+body.menu-page .filter-bar{position:sticky;top:72px;z-index:30}
+body.menu-page .menu-content{z-index:0}
+.story-leaf{top:72px;right:-205px}
+.visit{position:relative;overflow:hidden;isolation:isolate}
+.visit-rings{display:none}
+.visit::before{content:"";position:absolute;z-index:-1;width:clamp(380px,38vw,570px);height:570px;left:-235px;bottom:-235px;background:url("decor-double-leaf.webp") center/contain no-repeat;filter:brightness(0) invert(1);opacity:.13;transform:rotate(10deg);pointer-events:none}
+
+@media(max-width:760px){
+  body.menu-page .filter-bar{top:64px;z-index:30}
+  .story-leaf{width:350px;right:-165px;top:48px}
+  .visit::before{width:340px;height:340px;left:-165px;bottom:-145px;opacity:.12}
+  .hero .hero-copy{text-align:center;margin-inline:auto}
+  .hero h1{margin-bottom:55px}
+  .hero .hero-copy>p{margin-inline:auto}
+  .hero-actions{margin-top:24px;margin-inline:auto;align-items:center;justify-items:stretch}
+  .site-header nav a,.site-header nav a:hover,.site-header nav a[aria-current]{font:700 20px/1.2 Karla,Arial,sans-serif;letter-spacing:.075em;text-transform:uppercase}
+  .site-header nav .nav-order{font:700 20px/1.2 Karla,Arial,sans-serif;min-width:190px}
+}
