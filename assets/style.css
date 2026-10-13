@@ -2,14 +2,14 @@
   font-family: 'Fraunces';
   font-style: normal;
   font-weight: 400;
-  font-display: swap;
+  font-display: block;
   src: url(fonts/font-0.woff2) format('woff2');
 }
 @font-face {
   font-family: 'Fraunces';
   font-style: normal;
   font-weight: 600;
-  font-display: swap;
+  font-display: block;
   src: url(fonts/font-1.woff2) format('woff2');
 }
 @font-face {
@@ -1065,3 +1065,41 @@ body.lightbox-open .site-header{height:72px;box-shadow:0 8px 28px rgba(59,44,34,
 body.lightbox-open .brand img{width:100px}
 body.lightbox-open .site-header{height:var(--lightbox-header-height)!important;min-height:var(--lightbox-header-height)!important;transition:none!important}
 body.lightbox-open .brand img{width:var(--lightbox-brand-width)!important;transition:none!important}
+
+/* v34: stabil hero tipografia es gazdag GlutiliNO etlaphatter */
+.hero h1{font-synthesis:none;text-shadow:none;-webkit-font-smoothing:antialiased}
+body.menu-page main{position:relative;overflow:hidden;isolation:isolate}
+body.menu-page .page-intro,body.menu-page .filter-bar,body.menu-page .menu-content{position:relative;z-index:1}
+body.menu-page main::before,body.menu-page main::after,body.menu-page .page-intro::before,body.menu-page .page-intro::after,body.menu-page .menu-section::before,body.menu-page .menu-section::after,body.menu-page .menu-help::before,body.menu-page .menu-help::after{content:"";position:absolute;display:block;pointer-events:none;background-position:center;background-repeat:no-repeat;background-size:contain;z-index:-1}
+body.menu-page main::before{width:clamp(430px,45vw,700px);height:700px;right:-270px;top:170px;background-image:url("decor-double-leaf.webp");opacity:.12;transform:rotate(18deg)}
+body.menu-page main::after{width:clamp(390px,40vw,620px);height:620px;left:-260px;bottom:-130px;background-image:url("decor-bread.webp");opacity:.13;transform:rotate(-10deg)}
+body.menu-page .page-intro{isolation:isolate}
+body.menu-page .page-intro::before{width:clamp(250px,25vw,390px);height:390px;left:-150px;top:-125px;background-image:url("decor-leaf.webp");opacity:.14;transform:rotate(-24deg)}
+body.menu-page .page-intro::after{width:clamp(80px,8vw,120px);height:120px;right:12%;bottom:16px;background-image:url("decor-dot.webp");opacity:.2}
+body.menu-page .menu-section{position:relative;isolation:isolate}
+body.menu-page .menu-section .section-heading,body.menu-page .menu-section .menu-grid{position:relative;z-index:1}
+body.menu-page #pizza::before{width:clamp(330px,34vw,520px);height:520px;left:-215px;top:120px;background-image:url("decor-pizza.webp");opacity:.13;transform:rotate(-14deg)}
+body.menu-page #pizza::after{width:clamp(86px,8vw,122px);height:122px;right:7%;bottom:10%;background-image:url("decor-dot.webp");opacity:.2}
+body.menu-page #peksutemeny::before{width:clamp(330px,35vw,530px);height:530px;right:-210px;top:75px;background-image:url("decor-leaf.webp");opacity:.14;transform:rotate(24deg)}
+body.menu-page #peksutemeny::after{width:clamp(80px,7vw,112px);height:112px;left:8%;bottom:8%;background-image:url("decor-dot.webp");opacity:.18}
+body.menu-page #kenyer::before{width:clamp(360px,38vw,570px);height:570px;left:-240px;top:80px;background-image:url("decor-bread.webp");opacity:.12;transform:rotate(-8deg)}
+body.menu-page #kenyer::after{width:clamp(310px,32vw,490px);height:490px;right:-205px;bottom:-115px;background-image:url("decor-double-leaf.webp");opacity:.11;transform:rotate(18deg)}
+body.menu-page #desszert::before{width:clamp(310px,33vw,500px);height:500px;right:-200px;top:60px;background-image:url("decor-pizza.webp");opacity:.11;transform:rotate(16deg)}
+body.menu-page #desszert::after{width:clamp(300px,31vw,470px);height:470px;left:-195px;bottom:-110px;background-image:url("decor-leaf.webp");opacity:.13;transform:rotate(-26deg)}
+body.menu-page .menu-help{position:relative;isolation:isolate}
+body.menu-page .menu-help::before{width:clamp(280px,29vw,440px);height:440px;right:-175px;bottom:-210px;background-image:url("decor-double-leaf.webp");opacity:.11;transform:rotate(12deg)}
+body.menu-page .menu-help::after{width:90px;height:90px;left:9%;top:12px;background-image:url("decor-dot.webp");opacity:.17}
+@media(max-width:760px){
+  body.menu-page main::before{width:380px;height:380px;right:-205px;top:245px;opacity:.14}
+  body.menu-page main::after{width:340px;height:340px;left:-185px;bottom:-45px;opacity:.14}
+  body.menu-page .page-intro::before{width:250px;height:250px;left:-135px;top:-65px;opacity:.16}
+  body.menu-page .page-intro::after{width:72px;height:72px;right:7%;bottom:12px;opacity:.22}
+  body.menu-page #pizza::before{width:315px;height:315px;left:-175px;top:145px;opacity:.15}
+  body.menu-page #pizza::after{width:68px;height:68px;right:4%;bottom:6%;opacity:.22}
+  body.menu-page #peksutemeny::before{width:300px;height:300px;right:-165px;top:100px;opacity:.15}
+  body.menu-page #peksutemeny::after{width:64px;height:64px;left:5%;bottom:5%;opacity:.2}
+  body.menu-page #kenyer::before{width:320px;height:320px;left:-180px;top:105px;opacity:.14}
+  body.menu-page #kenyer::after{width:290px;height:290px;right:-165px;bottom:-65px;opacity:.13}
+  body.menu-page #desszert::before{width:300px;height:300px;right:-175px;top:110px;opacity:.13}
+  body.menu-page #desszert::after{width:280px;height:280px;left:-165px;bottom:-55px;opacity:.14}
+}
