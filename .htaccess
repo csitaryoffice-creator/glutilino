@@ -1,0 +1,26 @@
+# Apache 2.4 / LiteSpeed. Upload this hidden file with the site.
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+<IfModule mod_headers.c>
+Header always set X-Content-Type-Options "nosniff"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+Header always set X-Frame-Options "DENY"
+Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-Ov9Z1wcxmJk1yiwxKAOavHxxVjlBROKBOkN0x5L8jXU=' 'sha256-PT/7GLC0i85/bWe7WhfAyr1IFoCFFN+/DiGQsDYCW48=' 'sha256-bQnVMDRVheD1ap08HqI3YFF92LdbJAR71XBC0qzdMxw='; style-src 'self'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'"
+<FilesMatch "\.(html|xml|txt)$">
+Header set Cache-Control "no-cache"
+</FilesMatch>
+<FilesMatch "\.(webp|jpg|png|mp4|m4v|woff2?|ttf|css|js)$">
+Header set Cache-Control "public, max-age=604800"
+</FilesMatch>
+</IfModule>
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>
+<IfModule mod_mime.c>
+AddType image/webp .webp
+AddType font/woff2 .woff2
+AddType video/mp4 .mp4
+AddType video/mp4 .m4v
+</IfModule>
