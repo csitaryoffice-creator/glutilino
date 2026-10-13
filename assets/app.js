@@ -57,11 +57,12 @@
   }
   const filters=[...document.querySelectorAll('[data-filter]')];
   const sections=[...document.querySelectorAll('[data-category]')];
-  if(filters.length){
-    document.querySelector('.filter-bar').hidden=false;
+  const filterBar=document.querySelector('.filter-bar');
+  if(filters.length&&filterBar){
+    filterBar.hidden=false;
     const apply=(id)=>{if(!filters.some(b=>b.dataset.filter===id))id='all';filters.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.filter===id)));sections.forEach(s=>s.hidden=id!=='all'&&s.dataset.category!==id);const active=filters.find(b=>b.dataset.filter===id);document.querySelector('#filter-status').textContent=active.textContent+' kategória megjelenítve.';};
-    filters.forEach(b=>b.addEventListener('click',()=>{apply(b.dataset.filter);history.replaceState(null,'',b.dataset.filter==='all'?location.pathname:'#'+b.dataset.filter);}));
-    apply(location.hash.slice(1));window.addEventListener('hashchange',()=>apply(location.hash.slice(1)));
+    filterBar.addEventListener('click',event=>{const button=event.target.closest('[data-filter]');if(!button||!filterBar.contains(button))return;event.preventDefault();const id=button.dataset.filter;apply(id);const next=id==='all'?location.pathname+location.search:location.pathname+location.search+'#'+id;history.replaceState(null,'',next);});
+    apply(location.hash.slice(1)||'all');window.addEventListener('hashchange',()=>apply(location.hash.slice(1)||'all'));
   }
   const lightbox=document.querySelector('.lightbox');
   if(lightbox){
