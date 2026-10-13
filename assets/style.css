@@ -5,6 +5,7 @@
   font-display: block;
   src: url(fonts/font-0.woff2) format('woff2');
 }
+
 @font-face {
   font-family: 'Fraunces';
   font-style: normal;
@@ -1163,4 +1164,33 @@ body.menu-page .menu-content{z-index:0}
   .hero-actions{margin-top:24px;margin-inline:auto;align-items:center;justify-items:stretch}
   .site-header nav a,.site-header nav a:hover,.site-header nav a[aria-current]{font:700 20px/1.2 Karla,Arial,sans-serif;letter-spacing:.075em;text-transform:uppercase}
   .site-header nav .nav-order{font:700 20px/1.2 Karla,Arial,sans-serif;min-width:190px}
+}
+
+/* v38: hangsúlyosabb kapcsolatmotívum és finomított mobil hero */
+.visit::before{
+  width:clamp(500px,48vw,720px);
+  height:720px;
+  left:-205px;
+  bottom:-275px;
+}
+
+@media(max-width:760px){
+  .visit::before{
+    width:430px;
+    height:430px;
+    left:-155px;
+    bottom:-185px;
+    opacity:.13;
+  }
+  .hero .hero-copy{
+    transform:translateY(10%);
+  }
+  .hero .hero-copy>p:not(.eyebrow){
+    width:88%;
+    max-width:310px;
+  }
+  .hero-actions{
+    width:90%;
+    max-width:306px;
+  }
 }
