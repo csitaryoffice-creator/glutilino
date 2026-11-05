@@ -17,6 +17,36 @@
     syncHeader();
     window.addEventListener('scroll',syncHeader,{passive:true});
   }
+  const orderLinks=[...document.querySelectorAll('.nav-order,.header-cta')];
+  if(orderLinks.length){
+    const orderDialog=document.createElement('dialog');
+    orderDialog.className='order-dialog';
+    orderDialog.setAttribute('aria-labelledby','order-dialog-title');
+    orderDialog.innerHTML=`<div class="order-dialog-card">
+      <button class="order-dialog-close" type="button" aria-label="Rendelési ablak bezárása">×</button>
+      <h2 id="order-dialog-title">Rendelés elvitelre</h2>
+      <p>Számunkra kiemelten fontos, hogy gluténmentes ételeink biztonságosan kerüljenek hozzád. Jelenleg nem tudunk olyan ételkiszállító szolgáltatást igénybe venni, amelynél garantálható lenne a keresztszennyeződés elkerülése, ezért házhozszállítást egyelőre nem vállalunk.</p>
+      <p><strong>Telefonon viszont örömmel felvesszük a rendelésedet</strong>, az elkészült ételt pedig személyesen átveheted nálunk.</p>
+      <p>Köszönjük a megértésedet és azt, hogy ebben is segítesz nekünk a biztonságot az első helyen tartani.</p>
+      <a class="button order-dialog-cta" href="tel:+36300743932">Leadom a rendelést</a>
+    </div>`;
+    document.body.append(orderDialog);
+    const closeButton=orderDialog.querySelector('.order-dialog-close');
+    const closeOrder=()=>{
+      if(typeof orderDialog.close==='function'&&orderDialog.open)orderDialog.close();
+      else{orderDialog.removeAttribute('open');document.body.classList.remove('order-dialog-open');}
+    };
+    orderLinks.forEach(link=>link.addEventListener('click',event=>{
+      event.preventDefault();
+      if(typeof orderDialog.showModal==='function')orderDialog.showModal();
+      else orderDialog.setAttribute('open','');
+      document.body.classList.add('order-dialog-open');
+    }));
+    closeButton.addEventListener('click',closeOrder);
+    orderDialog.addEventListener('click',event=>{if(event.target===orderDialog)closeOrder();});
+    orderDialog.addEventListener('close',()=>document.body.classList.remove('order-dialog-open'));
+    orderDialog.addEventListener('cancel',()=>document.body.classList.remove('order-dialog-open'));
+  }
   const video=document.querySelector('.hero-video');
   const videoButton=document.querySelector('.video-toggle');
   if(video){
@@ -60,9 +90,75 @@
   const filterBar=document.querySelector('.filter-bar');
   if(filters.length&&filterBar){
     filterBar.hidden=false;
-    const apply=(id)=>{if(!filters.some(b=>b.dataset.filter===id))id='all';filters.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.filter===id)));sections.forEach(s=>s.hidden=id!=='all'&&s.dataset.category!==id);const active=filters.find(b=>b.dataset.filter===id);document.querySelector('#filter-status').textContent=active.textContent+' kategória megjelenítve.';};
-    filterBar.addEventListener('click',event=>{const button=event.target.closest('[data-filter]');if(!button||!filterBar.contains(button))return;event.preventDefault();const id=button.dataset.filter;apply(id);const next=id==='all'?location.pathname+location.search:location.pathname+location.search+'#'+id;history.replaceState(null,'',next);});
-    apply(location.hash.slice(1)||'all');window.addEventListener('hashchange',()=>apply(location.hash.slice(1)||'all'));
+    const normalize=id=>filters.some(button=>button.dataset.filter===id)?id:'all';
+    const readHashCategory=()=>normalize(location.hash.slice(1)||'all');
+    const clearCategoryHash=()=>{
+      if(location.hash)history.replaceState(history.state,'',location.pathname+location.search);
+    };
+    const updateAnchorOffset=()=>{
+      const headerHeight=header?.getBoundingClientRect().height||0;
+      const filterHeight=filterBar.getBoundingClientRect().height||0;
+      const gap=window.matchMedia('(max-width: 760px)').matches?16:22;
+      const offset=Math.ceil(headerHeight+filterHeight+gap);
+      document.documentElement.style.setProperty('--menu-anchor-offset',`${offset}px`);
+      return offset;
+    };
+    const apply=id=>{
+      id=normalize(id);
+      filters.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.filter===id)));
+      sections.forEach(section=>section.hidden=id!=='all'&&section.dataset.category!==id);
+      const active=filters.find(button=>button.dataset.filter===id);
+      const status=document.querySelector('#filter-status');
+      if(status&&active)status.textContent=active.textContent+' kategória megjelenítve.';
+      return id;
+    };
+    const scrollToCategory=(id,behavior='auto',shouldProceed=()=>true)=>{
+      const target=sections.find(section=>section.dataset.category===id);
+      if(!target)return;
+      requestAnimationFrame(()=>requestAnimationFrame(()=>{
+        if(!shouldProceed())return;
+        const offset=updateAnchorOffset();
+        const top=target.getBoundingClientRect().top+window.scrollY-offset;
+        window.scrollTo({top:Math.max(0,top),behavior});
+      }));
+    };
+    filterBar.addEventListener('click',event=>{
+      const button=event.target.closest('[data-filter]');
+      if(!button||!filterBar.contains(button))return;
+      event.preventDefault();
+      const id=apply(button.dataset.filter);
+      clearCategoryHash();
+      if(id!=='all')scrollToCategory(id,'smooth');
+    });
+    const openHashCategory=()=>{
+      const id=readHashCategory();
+      clearCategoryHash();
+      window.scrollTo({top:0,left:0,behavior:'auto'});
+      apply(id);
+      updateAnchorOffset();
+      if(id!=='all')scrollToCategory(id);
+    };
+    if('scrollRestoration' in history)history.scrollRestoration='manual';
+    const initialCategory=readHashCategory();
+    clearCategoryHash();
+    window.scrollTo({top:0,left:0,behavior:'auto'});
+    apply(initialCategory);
+    updateAnchorOffset();
+    window.addEventListener('hashchange',openHashCategory);
+    window.addEventListener('resize',updateAnchorOffset,{passive:true});
+    let initialPositioningCancelled=false;
+    const cancelInitialPositioning=()=>{initialPositioningCancelled=true;};
+    window.addEventListener('wheel',cancelInitialPositioning,{once:true,passive:true});
+    window.addEventListener('touchstart',cancelInitialPositioning,{once:true,passive:true});
+    window.addEventListener('pointerdown',cancelInitialPositioning,{once:true,passive:true});
+    window.addEventListener('keydown',cancelInitialPositioning,{once:true});
+    const positionInitialCategory=()=>{
+      updateAnchorOffset();
+      if(initialCategory!=='all')scrollToCategory(initialCategory,'auto',()=>!initialPositioningCancelled);
+    };
+    if(document.readyState==='complete')positionInitialCategory();
+    else window.addEventListener('load',positionInitialCategory,{once:true});
+    document.fonts?.ready?.then(updateAnchorOffset);
   }
   const menuBook=document.querySelector('[data-menu-book]');
   if(menuBook){
@@ -75,8 +171,25 @@
     const fullscreenButton=menuBook.querySelector('[data-book-fullscreen]');
     const labels=['Címlap','Ételek · 1–2. oldal','Italok · 3–4. oldal','Hátlap'];
     const canMagnify=window.matchMedia('(hover: hover) and (pointer: fine)');
+    const mobileBookLayout=window.matchMedia('(max-width: 760px)');
     let active=0,dragging=false,startX=0,startY=0,deltaX=0;
     const hideMagnifier=()=>{if(magnifier)magnifier.classList.remove('is-visible');};
+    const fitBookToViewport=()=>{
+      if(!stage||document.fullscreenElement===menuBook)return;
+      window.requestAnimationFrame(()=>{
+        const viewportHeight=Math.min(window.innerHeight,window.visualViewport?.height||window.innerHeight);
+        const top=Math.max(0,stage.getBoundingClientRect().top);
+        const gap=mobileBookLayout.matches?18:28;
+        const availableHeight=Math.max(180,viewportHeight-top-gap);
+        if(!mobileBookLayout.matches&&availableHeight<viewportHeight*.55){
+          menuBook.style.removeProperty('--menu-book-open-width');
+          menuBook.style.removeProperty('--menu-book-cover-width');
+          return;
+        }
+        menuBook.style.setProperty('--menu-book-open-width',`${availableHeight*.9425}px`);
+        menuBook.style.setProperty('--menu-book-cover-width',`${availableHeight*.4717}px`);
+      });
+    };
     const resetDraggedSpread=()=>{
       const current=spreads[active];
       if(!current)return;
@@ -163,7 +276,18 @@
         hideMagnifier();
       });
     }else if(fullscreenButton)fullscreenButton.hidden=true;
-    show(0);
+    const syncInitialBookView=()=>{
+      if(mobileBookLayout.matches&&active===0)show(1,1);
+      fitBookToViewport();
+    };
+    show(mobileBookLayout.matches?1:0);
+    fitBookToViewport();
+    mobileBookLayout.addEventListener?.('change',syncInitialBookView);
+    window.addEventListener('resize',fitBookToViewport,{passive:true});
+    window.visualViewport?.addEventListener('resize',fitBookToViewport,{passive:true});
+    window.addEventListener('load',fitBookToViewport,{once:true});
+    document.fonts?.ready?.then(fitBookToViewport);
+    window.addEventListener('pageshow',syncInitialBookView);
   }
   const lightbox=document.querySelector('.lightbox');
   if(lightbox){
