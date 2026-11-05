@@ -201,6 +201,96 @@ body{background:#F3ECE2;color:#3B2C22}
   .map-panel{border-radius:80px 80px 0 0;border-width:7px}
 }
 
+/* v85 — category rhythm, rustic benefit icons and SZÉP cards */
+.category-grid{
+  column-gap:clamp(40px,4.45vw,65px)!important;
+}
+.category-grid>.cat-appetizers,
+.category-grid>.cat-sandwiches{
+  width:100%!important;
+  max-width:none!important;
+  justify-self:start!important;
+}
+.category-grid .cat-pizza img{
+  object-position:50% 50%!important;
+}
+.category-grid .cat-appetizers img{
+  object-position:68% 50%!important;
+}
+.category-grid .cat-pastry img{
+  object-position:50% 50%!important;
+}
+.category-grid .image-window img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.why-icon{
+  border-radius:43% 57% 49% 51% / 54% 45% 55% 46%!important;
+  background:#ead8c9!important;
+  border:2px solid rgba(171,68,40,.72);
+  box-shadow:3px 4px 0 rgba(59,44,34,.18);
+  animation:none!important;
+  transform:rotate(-2deg);
+}
+.why-card:nth-child(even) .why-icon{transform:rotate(2deg)}
+.why-icon svg{
+  stroke-width:3.4!important;
+  filter:drop-shadow(1px 1px 0 rgba(59,44,34,.12));
+}
+.why-icon .why-icon-accent{
+  stroke-width:4!important;
+  animation:none!important;
+}
+.szep-card-stack{
+  align-items:flex-start;
+  padding:0!important;
+}
+.szep-card{
+  width:138px!important;
+  height:86px!important;
+  flex:0 0 138px!important;
+  border-radius:7px!important;
+  background-size:cover!important;
+  background-position:center!important;
+  background-repeat:no-repeat!important;
+  box-shadow:3px 4px 10px rgba(25,16,11,.2)!important;
+}
+.szep-otp{
+  z-index:1;
+  background-image:url("szep-otp.jpg")!important;
+  transform:none!important;
+}
+.szep-kh{
+  z-index:2;
+  margin-left:-26px!important;
+  background-image:url("szep-kh.jpg")!important;
+  transform:translateY(7px)!important;
+}
+.szep-mbh{
+  z-index:3;
+  margin-left:-26px!important;
+  background-image:url("szep-mbh.jpg")!important;
+  transform:translateY(14px)!important;
+}
+@media(min-width:761px){
+  .cat-appetizers .image-window{border-radius:0 0 0 80px!important}
+  .cat-pastry{justify-self:start!important}
+  .cat-pastry .image-window{border-radius:0 0 0 80px!important}
+}
+@media(max-width:760px){
+  .cat-appetizers .image-window{border-radius:0 0 0 34px!important}
+  .cat-pastry{justify-self:start!important}
+  .cat-pastry .image-window{border-radius:0 0 0 34px!important}
+  .szep-payment{text-align:left!important}
+  .szep-card-stack{
+    justify-content:flex-start!important;
+    transform:scale(.84)!important;
+    transform-origin:left top!important;
+  }
+}
+
 /* v19: Google térkép, világos lábléc, arculati közösségi ikonok */
 .google-map-wrap{position:relative;overflow:hidden;background:#F3ECE2;border-radius:0 88px 0 0;box-shadow:12px 12px 0 rgba(59,44,34,.24)}
 .google-map-wrap::after{content:"";position:absolute;inset:0;pointer-events:none;background:rgba(86,97,35,.08);mix-blend-mode:multiply}
@@ -1088,7 +1178,8 @@ body.lightbox-open .brand img{width:var(--lightbox-brand-width)!important;transi
 
 /* v34: stabil hero tipografia es gazdag glutiliNO etlaphatter */
 .hero h1{font-synthesis:none;text-shadow:none;-webkit-font-smoothing:antialiased}
-body.menu-page main{position:relative;overflow:hidden;isolation:isolate}
+body.menu-page{overflow-anchor:none}
+body.menu-page main{position:relative;overflow-x:clip;overflow-y:visible;overflow-anchor:none;isolation:isolate}
 body.menu-page .page-intro,body.menu-page .filter-bar,body.menu-page .menu-content{position:relative;z-index:1}
 body.menu-page main::before,body.menu-page main::after,body.menu-page .page-intro::before,body.menu-page .page-intro::after,body.menu-page .menu-section::before,body.menu-page .menu-section::after,body.menu-page .menu-help::before,body.menu-page .menu-help::after{content:"";position:absolute;display:block;pointer-events:none;background-position:center;background-repeat:no-repeat;background-size:contain;z-index:-1}
 body.menu-page main::before{width:clamp(430px,45vw,700px);height:700px;right:-270px;top:170px;background-image:url("decor-double-leaf.webp");opacity:.12;transform:rotate(18deg)}
@@ -1167,6 +1258,7 @@ body.menu-page .menu-help p{margin:16px 0 26px;max-width:720px}
 
 /* v37: dekoracio, mobil hero es biztosan kattinthato etlapszuro */
 body.menu-page .filter-bar{position:sticky;top:72px;z-index:30}
+body.menu-page .menu-section{scroll-margin-top:var(--menu-anchor-offset,170px)}
 body.menu-page .menu-content{z-index:0}
 .story-leaf{top:72px;right:-205px}
 .visit{position:relative;overflow:hidden;isolation:isolate}
@@ -1175,6 +1267,7 @@ body.menu-page .menu-content{z-index:0}
 
 @media(max-width:760px){
   body.menu-page .filter-bar{top:64px;z-index:30}
+  body.menu-page .menu-section{scroll-margin-top:var(--menu-anchor-offset,210px)}
   .story-leaf{width:350px;right:-165px;top:48px}
   .visit::before{width:340px;height:340px;left:-165px;bottom:-145px;opacity:.12}
   .hero .hero-copy{text-align:center;margin-inline:auto}
@@ -2705,3 +2798,407 @@ body.menu-page .menu-content{z-index:0}
   .menu-book:fullscreen .menu-book-arrow-next{right:6px}
 }
 @media(hover:none),(pointer:coarse){.menu-book-magnifier{display:none!important}}
+
+/* v65: minden kijelzőn elférő étlapkönyv és kiegyensúlyozott mobil hero */
+.menu-book-stage{
+  width:min(100%,840px,var(--menu-book-open-width,calc((100svh - 136px)*.9425)));
+  margin-inline:auto;
+}
+.menu-book.is-cover .menu-book-stage,
+.menu-book.is-back .menu-book-stage{
+  width:min(100%,420px,var(--menu-book-cover-width,calc((100svh - 136px)*.4717)));
+}
+.menu-section-pending{
+  min-height:150px;
+}
+
+@media(max-width:760px){
+  .menu-book-stage{
+    width:min(100%,var(--menu-book-open-width,calc((100svh - 104px)*.9425)));
+  }
+  .menu-book.is-cover .menu-book-stage,
+  .menu-book.is-back .menu-book-stage{
+    width:min(100%,var(--menu-book-cover-width,calc((100svh - 104px)*.4717)));
+  }
+  .menu-section-pending{min-height:112px}
+
+  .hero-content{
+    align-items:center;
+    padding:54px 22px;
+  }
+  .hero .hero-copy{
+    transform:none;
+  }
+  .hero h1{
+    font-size:clamp(49px,14vw,66px);
+    font-weight:700;
+    line-height:.94;
+    letter-spacing:-.025em;
+    -webkit-text-stroke:.35px currentColor;
+    paint-order:stroke fill;
+    text-shadow:0 2px 18px rgba(24,16,12,.48);
+  }
+  .hero h1 .hero-accent{
+    display:block;
+    margin:.06em 0 .08em;
+    -webkit-text-stroke:2.6px #fff;
+  }
+  .hero-actions{
+    width:min(90%,306px);
+    margin-inline:auto;
+  }
+  .hero .hero-secondary{
+    display:inline-flex;
+    background:var(--terra);
+    color:var(--cream);
+    border-color:var(--terra);
+  }
+  .hero .hero-secondary:hover,
+  .hero .hero-secondary:focus-visible{
+    background:var(--brown);
+    border-color:var(--brown);
+  }
+}
+
+/* v63: egyedi 404 oldal */
+.error-page{min-height:100svh;display:flex;flex-direction:column}
+.error-page .not-found{flex:1;min-height:100svh}
+.not-found{
+  position:relative;
+  min-height:clamp(620px,calc(100svh - 100px),820px);
+  display:grid;
+  align-items:center;
+  overflow:hidden;
+  isolation:isolate;
+  background:radial-gradient(circle at 86% 12%,rgba(239,225,216,.84),transparent 31%),var(--cream);
+}
+.not-found-grid{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:minmax(0,.88fr) minmax(520px,1.12fr);
+  align-items:center;
+  gap:clamp(42px,6vw,96px);
+  padding-block:90px;
+}
+.not-found-copy{max-width:590px}
+.not-found-copy .eyebrow{margin-bottom:22px;color:var(--terra)}
+.not-found-copy h1{font-size:clamp(58px,6.2vw,94px)}
+.not-found-copy h1>span{display:block;white-space:nowrap}
+.not-found-copy h1 em{display:block;color:var(--terra)}
+.not-found-copy .intro{max-width:555px;margin-top:30px;font-size:20px}
+.not-found-actions{display:flex;align-items:center;gap:28px;margin-top:38px}
+.not-found-actions .button{background:var(--olive);box-shadow:none}
+.not-found-actions .button:hover{background:var(--terra)}
+.not-found-menu-link{
+  padding:13px 2px 10px;
+  border-bottom:1px solid var(--brown);
+  font-size:15px;
+  font-weight:700;
+  transition:color .2s ease,border-color .2s ease;
+}
+.not-found-menu-link:hover{color:var(--terra);border-color:var(--terra)}
+.not-found-number{
+  display:grid;
+  grid-template-columns:auto minmax(210px,330px) auto;
+  align-items:center;
+  justify-content:center;
+  color:var(--terra);
+  font:400 clamp(180px,19vw,310px)/.72 Fraunces,Georgia,serif;
+  letter-spacing:-.11em;
+  user-select:none;
+}
+.not-found-number>span:first-child{transform:translateX(9%)}
+.not-found-number>span:last-child{transform:translateX(-9%)}
+.not-found-pizza-wrap{
+  position:relative;
+  z-index:2;
+  display:block;
+  aspect-ratio:1;
+  filter:drop-shadow(0 22px 20px rgba(59,44,34,.22));
+  transform:rotate(-9deg);
+  animation:not-found-float 6s ease-in-out infinite;
+}
+.not-found-pizza-wrap img{width:100%;height:100%;object-fit:contain}
+.not-found-decor{position:absolute;z-index:1;pointer-events:none;opacity:.17}
+.not-found-leaves{width:clamp(260px,28vw,470px);right:-8%;bottom:-15%;transform:rotate(-18deg)}
+.not-found-dot{width:clamp(55px,6vw,90px)}
+.not-found-dot-one{top:10%;right:5%}
+.not-found-dot-two{bottom:10%;left:-1%;width:52px}
+@keyframes not-found-float{
+  0%,100%{transform:rotate(-9deg) translateY(0)}
+  50%{transform:rotate(-5deg) translateY(-14px)}
+}
+@media(max-width:1100px){
+  .not-found-grid{grid-template-columns:minmax(0,.9fr) minmax(390px,1.1fr);gap:32px}
+  .not-found-number{grid-template-columns:auto minmax(170px,260px) auto}
+}
+@media(max-width:760px){
+  .not-found{min-height:calc(100svh - 84px);align-items:start}
+  .not-found-grid{grid-template-columns:1fr;gap:40px;padding-block:58px 72px;text-align:center}
+  .not-found-copy{max-width:none}
+  .not-found-copy .eyebrow{margin-bottom:17px;font-size:10px}
+  .not-found-copy h1{font-size:clamp(46px,13vw,63px)}
+  .not-found-copy h1>span{white-space:normal}
+  .not-found-copy h1 em{display:inline-block;margin-left:.12em}
+  .not-found-copy .intro{margin:24px auto 0;font-size:17px;max-width:440px}
+  .not-found-actions{justify-content:center;flex-direction:column;gap:14px;margin-top:30px}
+  .not-found-actions .button{width:min(100%,320px);font-size:14px}
+  .not-found-menu-link{font-size:14px}
+  .not-found-number{order:-1;grid-template-columns:auto minmax(120px,42vw) auto;font-size:clamp(115px,35vw,175px);margin-bottom:-12px}
+  .not-found-leaves{width:300px;right:-130px;bottom:2%;opacity:.11}
+  .not-found-dot-one{top:37%;right:-24px;opacity:.12}
+  .not-found-dot-two{bottom:18%;left:-20px;opacity:.12}
+}
+@media(prefers-reduced-motion:reduce){.not-found-pizza-wrap{animation:none}}
+
+/* v75: pizzakartya kepvaltas */
+.menu-item-media{
+  position:relative;
+  overflow:hidden;
+  width:100%;
+  aspect-ratio:1.35;
+  box-shadow:6px 6px 0 rgba(59,44,34,.22);
+}
+.menu-item-media img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  aspect-ratio:auto;
+  box-shadow:none!important;
+  transition:opacity .32s ease;
+}
+.menu-item-media .menu-item-hover{opacity:0}
+@media(hover:hover) and (pointer:fine){
+  .menu-item-media:has(.menu-item-hover):hover .menu-item-hover{opacity:1}
+}
+@media(max-width:760px){
+  .menu-item-media{aspect-ratio:1.45;box-shadow:4px 4px 0 rgba(59,44,34,.22)}
+  .menu-item-media .menu-item-hover{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .menu-item-media img{transition:none}
+}
+
+/* v79: Champion jelvény, egységes képhoverek és bővített kínálat */
+.champion-ribbon{
+  position:absolute;
+  left:18px;
+  bottom:18px;
+  z-index:3;
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:10px 14px;
+  border-radius:999px;
+  background:#3B2C22;
+  color:#D6A84C;
+  box-shadow:0 6px 18px rgba(59,44,34,.24);
+  font-size:.78rem;
+  line-height:1;
+  font-weight:800;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+.champion-ribbon svg{width:19px;height:19px;flex:0 0 auto;fill:currentColor}
+
+.menu-item>img,
+.menu-item-media:not(:has(.menu-item-hover)) img{
+  transform:scale(1);
+  transform-origin:center;
+  transition:transform .42s cubic-bezier(.2,.7,.2,1);
+}
+@media(hover:hover) and (pointer:fine){
+  .menu-item:hover>img,
+  .menu-item-media:not(:has(.menu-item-hover)):hover img{transform:scale(1.035)}
+}
+
+.cat-appetizers{width:88%;justify-self:end}
+.cat-sandwiches{width:92%;justify-self:start}
+.cat-appetizers .image-window{aspect-ratio:1.32/1;border-radius:0 0 80px 0}
+.cat-sandwiches .image-window{aspect-ratio:1.42/1;border-radius:80px 0 0 0}
+
+@media(max-width:760px){
+  .champion-ribbon{left:12px;bottom:12px;padding:8px 11px;font-size:.67rem}
+  .champion-ribbon svg{width:17px;height:17px}
+  .category-grid>.cat-appetizers,.category-grid>.cat-sandwiches{width:100%;max-width:none;margin:0;padding:0}
+  .cat-appetizers .image-window,.cat-sandwiches .image-window{width:100%;height:clamp(220px,67vw,290px);aspect-ratio:auto;border-radius:0 34px 0 0}
+}
+@media(prefers-reduced-motion:reduce){
+  .menu-item>img,.menu-item-media:not(:has(.menu-item-hover)) img{transition:none}
+}
+
+/* v84: olvasható étlapszűrő, kínálati finomhangolás, SZÉP-kártyák és rendelési ablak */
+body.menu-page .filter-bar{
+  background:#F3ECE2!important;
+  background-color:#F3ECE2!important;
+  -webkit-backdrop-filter:none!important;
+  backdrop-filter:none!important;
+  box-shadow:0 7px 18px rgba(59,44,34,.11);
+  isolation:isolate;
+}
+
+.category-grid .cat-pizza img,
+.category-grid .cat-appetizers img,
+.category-grid .cat-pastry img{object-position:center!important}
+
+.szep-payment{margin:28px 0 6px}
+.szep-payment p{margin:0 0 14px;font-family:Karla,Arial,sans-serif;font-size:.93rem;letter-spacing:.02em}
+.szep-card-stack{display:flex;align-items:center;min-height:92px;padding-left:4px}
+.szep-card{
+  display:block;
+  width:130px;
+  height:82px;
+  flex:0 0 130px;
+  border-radius:8px;
+  background-image:url("szep-kartyak.jpg");
+  background-repeat:no-repeat;
+  background-size:291px 164px;
+  box-shadow:4px 5px 12px rgba(35,28,23,.22);
+}
+.szep-otp{z-index:1;background-position:left top;transform:rotate(-4deg)}
+.szep-kh{z-index:2;margin-left:-36px;background-position:right top;transform:translateY(4px) rotate(3deg)}
+.szep-mbh{z-index:3;margin-left:-36px;background-position:center bottom;transform:translateY(8px) rotate(-2deg)}
+
+.order-dialog{
+  width:min(680px,calc(100% - 36px));
+  max-width:680px;
+  max-height:calc(100dvh - 36px);
+  padding:0;
+  border:0;
+  overflow:visible;
+  color:var(--brown);
+  background:transparent;
+}
+.order-dialog::backdrop{background:rgba(38,29,23,.72);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
+.order-dialog-card{
+  position:relative;
+  max-height:calc(100dvh - 36px);
+  overflow:auto;
+  padding:clamp(32px,5vw,58px);
+  border-radius:0 70px 0 0;
+  background:var(--cream);
+  box-shadow:10px 10px 0 rgba(171,68,40,.38);
+}
+.order-dialog h2{max-width:540px;margin:0 48px 22px 0;font-size:clamp(38px,5vw,58px);line-height:.98}
+.order-dialog p{margin:0 0 16px;font-size:16px;line-height:1.58}
+.order-dialog-close{
+  position:absolute;
+  top:15px;
+  right:16px;
+  z-index:2;
+  display:grid;
+  width:42px;
+  height:42px;
+  place-items:center;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  color:var(--cream);
+  background:var(--olive);
+  font:400 31px/1 Karla,Arial,sans-serif;
+  cursor:pointer;
+  transition:transform .25s ease,background-color .25s ease;
+}
+.order-dialog-close:hover,.order-dialog-close:focus-visible{background:var(--terra);transform:rotate(8deg) scale(1.05)}
+.order-dialog-cta{margin-top:14px}
+body.order-dialog-open{overflow:hidden}
+
+@media(min-width:761px){
+  .cat-pizza,.cat-appetizers{align-self:end}
+  .cat-pastry{width:90%;justify-self:end;padding-top:0}
+  .cat-pastry .image-window{border-radius:0 0 80px 0!important}
+}
+@media(max-width:760px){
+  .cat-pastry{width:90%;justify-self:end}
+  .cat-pastry .image-window{border-radius:0 0 34px 0!important}
+  .szep-payment{text-align:center}
+  .szep-card-stack{justify-content:center;transform:scale(.84);transform-origin:center top;margin-bottom:-10px}
+  .order-dialog{width:calc(100% - 24px);max-height:calc(100dvh - 24px)}
+  .order-dialog-card{max-height:calc(100dvh - 24px);padding:34px 24px 30px;border-radius:0 42px 0 0;box-shadow:6px 6px 0 rgba(171,68,40,.38)}
+  .order-dialog h2{margin-right:38px;font-size:34px}
+  .order-dialog p{font-size:15px;line-height:1.5}
+  .order-dialog-close{top:12px;right:12px;width:38px;height:38px}
+  .order-dialog-cta{width:100%;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){.order-dialog-close{transition:none}}
+
+/* v86 final precedence — category corner and benefit icon corrections */
+.category-grid .cat-pizza img,
+.category-grid .cat-appetizers img,
+.category-grid .cat-pastry img{
+  object-position:center center!important;
+}
+.why-section .why-icon{
+  position:relative;
+  border:2px solid rgba(171,68,40,.78)!important;
+  border-radius:43% 57% 49% 51% / 54% 45% 55% 46%!important;
+  background:#ead8c9!important;
+  box-shadow:3px 4px 0 rgba(59,44,34,.18)!important;
+  animation:why-icon-gentle-float 4.8s ease-in-out infinite!important;
+}
+.why-section .why-icon::after{
+  content:"";
+  position:absolute;
+  inset:5px;
+  border:1px dashed rgba(86,97,35,.48);
+  border-radius:inherit;
+  pointer-events:none;
+}
+.why-section .why-icon svg{
+  position:relative;
+  z-index:1;
+  stroke-width:3.4!important;
+  filter:drop-shadow(1px 1px 0 rgba(59,44,34,.13));
+}
+.why-section .why-icon .why-icon-accent{
+  stroke-width:4!important;
+  animation:none!important;
+}
+@keyframes why-icon-gentle-float{
+  0%,100%{transform:translateY(0) rotate(-1deg)}
+  50%{transform:translateY(-4px) rotate(1deg)}
+}
+.why-section .why-card:nth-child(2) .why-icon{animation-delay:-1.2s!important}
+.why-section .why-card:nth-child(3) .why-icon{animation-delay:-2.4s!important}
+.why-section .why-card:nth-child(4) .why-icon{animation-delay:-3.6s!important}
+@media(min-width:761px){
+  .category-grid .cat-appetizers .image-window{
+    border-radius:0 0 0 80px!important;
+  }
+  .category-grid .cat-pastry{
+    justify-self:start!important;
+  }
+  .category-grid .cat-pastry .image-window{
+    border-radius:0 0 0 80px!important;
+  }
+  .category-grid .cat-dessert .image-window{
+    border-radius:0 0 80px 0!important;
+  }
+}
+@media(max-width:760px){
+  .category-grid .cat-appetizers .image-window{
+    border-radius:0 0 0 34px!important;
+  }
+  .category-grid .cat-pastry{
+    justify-self:start!important;
+  }
+  .category-grid .cat-pastry .image-window{
+    border-radius:0 0 0 34px!important;
+  }
+  .category-grid .cat-dessert .image-window{
+    border-radius:0 0 34px 0!important;
+  }
+  .visit .szep-payment{
+    text-align:left!important;
+  }
+  .visit .szep-card-stack{
+    justify-content:flex-start!important;
+    transform-origin:left top!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .why-section .why-icon{animation:none!important}
+}
