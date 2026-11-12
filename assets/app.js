@@ -307,6 +307,7 @@
     };
     fullscreenButton?.addEventListener('click',()=>setFullscreen(!menuBook.classList.contains('is-fullscreen-custom')));
     zoomButton?.addEventListener('click',()=>{
+      if(mobileBookLayout.matches)return;
       const open=!menuBook.classList.contains('is-touch-zoomed');
       menuBook.classList.toggle('is-touch-zoomed',open);
       zoomButton.setAttribute('aria-pressed',String(open));
