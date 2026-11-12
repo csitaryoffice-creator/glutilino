@@ -3537,3 +3537,51 @@ body.menu-book-fullscreen-open {
     font-size: 16px;
   }
 }
+
+/* v89: kapcsolat elrendezés + mobil PDF teljes képernyő */
+.map-card .reservation-card {
+  width: 100%;
+  margin: 0;
+  justify-self: stretch;
+  border-color: rgba(59, 44, 34, 0.14);
+  background: var(--beige);
+  color: var(--brown);
+  box-shadow: 6px 6px 0 rgba(59, 44, 34, 0.24);
+}
+
+.map-card .reservation-card h3,
+.map-card .reservation-card p {
+  color: var(--brown);
+}
+
+.map-card .reservation-phone {
+  background: var(--olive);
+  color: var(--cream);
+}
+
+.map-card .reservation-phone:hover {
+  background: var(--terra);
+  color: var(--cream);
+}
+
+body.menu-book-fullscreen-open .filter-bar {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+body.menu-book-fullscreen-open .menu-book-section {
+  position: relative;
+  z-index: 1001 !important;
+}
+
+body.menu-book-fullscreen-open .menu-book.is-fullscreen-custom {
+  z-index: 1002 !important;
+}
+
+@media (max-width: 760px) {
+  .menu-book-zoom,
+  .menu-book.is-fullscreen-custom .menu-book-zoom {
+    display: none !important;
+  }
+}
