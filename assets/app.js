@@ -17,7 +17,7 @@
     syncHeader();
     window.addEventListener('scroll',syncHeader,{passive:true});
   }
-  const orderLinks=[...document.querySelectorAll('.nav-order,.header-cta')];
+  const orderLinks=[...document.querySelectorAll('.nav-order,.header-cta,.hero-secondary')];
   if(orderLinks.length){
     const orderDialog=document.createElement('dialog');
     orderDialog.className='order-dialog';
@@ -163,19 +163,30 @@
   const menuBook=document.querySelector('[data-menu-book]');
   if(menuBook){
     const spreads=[...menuBook.querySelectorAll('[data-book-spread]')];
+    const pages=[];
+    spreads.forEach((spread,spreadIndex)=>{
+      [...spread.querySelectorAll('.menu-book-page:not(.menu-book-blank)')].forEach(page=>pages.push({page,spreadIndex}));
+    });
     const previous=menuBook.querySelector('[data-book-prev]');
     const next=menuBook.querySelector('[data-book-next]');
     const status=menuBook.querySelector('[data-book-status]');
     const stage=menuBook.querySelector('.menu-book-stage');
     const magnifier=menuBook.querySelector('[data-book-magnifier]');
     const fullscreenButton=menuBook.querySelector('[data-book-fullscreen]');
+    const zoomButton=menuBook.querySelector('[data-book-zoom]');
     const labels=['Címlap','Ételek · 1–2. oldal','Italok · 3–4. oldal','Hátlap'];
+    const pageLabels=pages.map(({page},index)=>page.querySelector('img')?.alt||`${index+1}. oldal`);
     const canMagnify=window.matchMedia('(hover: hover) and (pointer: fine)');
     const mobileBookLayout=window.matchMedia('(max-width: 760px)');
-    let active=0,dragging=false,startX=0,startY=0,deltaX=0;
+    let active=0,pageActive=mobileBookLayout.matches?1:0,dragging=false,startX=0,startY=0,deltaX=0;
+    const isSingleMode=()=>mobileBookLayout.matches&&menuBook.classList.contains('is-fullscreen-custom');
     const hideMagnifier=()=>{if(magnifier)magnifier.classList.remove('is-visible');};
+    const clearTouchZoom=()=>{
+      menuBook.classList.remove('is-touch-zoomed');
+      if(zoomButton){zoomButton.setAttribute('aria-pressed','false');zoomButton.setAttribute('aria-label','Nagyítás bekapcsolása');}
+    };
     const fitBookToViewport=()=>{
-      if(!stage||document.fullscreenElement===menuBook)return;
+      if(!stage||menuBook.classList.contains('is-fullscreen-custom'))return;
       window.requestAnimationFrame(()=>{
         const viewportHeight=Math.min(window.innerHeight,window.visualViewport?.height||window.innerHeight);
         const top=Math.max(0,stage.getBoundingClientRect().top);
@@ -193,45 +204,66 @@
     const resetDraggedSpread=()=>{
       const current=spreads[active];
       if(!current)return;
-      current.style.transition='transform .22s ease';
-      current.style.transform='';
+      current.style.transition='transform .22s ease';current.style.transform='';
       window.setTimeout(()=>{current.style.transition='';},240);
     };
-    const show=(index,direction=1)=>{
-      const target=Math.max(0,Math.min(spreads.length-1,index));
-      hideMagnifier();
-      if(target===active&&spreads[target].classList.contains('is-active')){resetDraggedSpread();return;}
-      spreads.forEach((spread,i)=>{
+    const prepareSpreads=(target,direction)=>{
+      spreads.forEach((spread,index)=>{
         spread.classList.remove('is-active','is-turning-forward','is-turning-back');
-        spread.setAttribute('aria-hidden',String(i!==target));
+        spread.setAttribute('aria-hidden',String(index!==target));
         spread.style.transform='';spread.style.transition='';
       });
       active=target;
-      menuBook.classList.toggle('is-cover',active===0);
-      menuBook.classList.toggle('is-back',active===spreads.length-1);
       const current=spreads[active];
       current.classList.add('is-active',direction>0?'is-turning-forward':'is-turning-back');
       window.setTimeout(()=>current.classList.remove('is-turning-forward','is-turning-back'),520);
-      previous.disabled=active===0;
-      next.disabled=active===spreads.length-1;
-      status.textContent=labels[active]||`${active+1}. oldalpár`;
     };
-    previous.addEventListener('click',()=>show(active-1,-1));
-    next.addEventListener('click',()=>show(active+1,1));
+    const showSpread=(index,direction=1)=>{
+      const target=Math.max(0,Math.min(spreads.length-1,index));
+      hideMagnifier();clearTouchZoom();menuBook.classList.remove('is-mobile-single');
+      pages.forEach(({page})=>page.classList.remove('is-mobile-page-active'));
+      prepareSpreads(target,direction);
+      menuBook.classList.toggle('is-cover',active===0);
+      menuBook.classList.toggle('is-back',active===spreads.length-1);
+      previous.disabled=active===0;next.disabled=active===spreads.length-1;
+      status.textContent=labels[active]||`${active+1}. oldalpár`;
+      const firstPage=pages.findIndex(item=>item.spreadIndex===active);
+      if(firstPage>=0)pageActive=firstPage;
+    };
+    const showPage=(index,direction=1)=>{
+      pageActive=Math.max(0,Math.min(pages.length-1,index));
+      const entry=pages[pageActive];
+      hideMagnifier();clearTouchZoom();menuBook.classList.add('is-mobile-single');
+      prepareSpreads(entry.spreadIndex,direction);
+      pages.forEach(({page},i)=>page.classList.toggle('is-mobile-page-active',i===pageActive));
+      menuBook.classList.toggle('is-cover',pageActive===0);
+      menuBook.classList.toggle('is-back',pageActive===pages.length-1);
+      previous.disabled=pageActive===0;next.disabled=pageActive===pages.length-1;
+      status.textContent=pageLabels[pageActive];
+    };
+    const go=delta=>isSingleMode()?showPage(pageActive+delta,delta):showSpread(active+delta,delta);
+    previous.addEventListener('click',()=>go(-1));
+    next.addEventListener('click',()=>go(1));
     menuBook.addEventListener('keydown',event=>{
-      if(event.key==='ArrowRight'){event.preventDefault();show(active+1,1);}
-      if(event.key==='ArrowLeft'){event.preventDefault();show(active-1,-1);}
+      if(event.key==='ArrowRight'){event.preventDefault();go(1);}
+      if(event.key==='ArrowLeft'){event.preventDefault();go(-1);}
+      if(event.key==='Escape'&&menuBook.classList.contains('is-fullscreen-custom')){event.preventDefault();setFullscreen(false);}
     });
     if(stage){
       stage.addEventListener('dragstart',event=>event.preventDefault());
       stage.addEventListener('pointerdown',event=>{
-        if(event.button!==0)return;
+        if(event.button!==0||menuBook.classList.contains('is-touch-zoomed'))return;
         dragging=true;startX=event.clientX;startY=event.clientY;deltaX=0;
         hideMagnifier();menuBook.classList.add('is-dragging');
         spreads[active].classList.remove('is-turning-forward','is-turning-back');
         stage.setPointerCapture?.(event.pointerId);
       });
       stage.addEventListener('pointermove',event=>{
+        if(menuBook.classList.contains('is-touch-zoomed')){
+          const image=event.target.closest('.menu-book-page.is-mobile-page-active img, .menu-book-spread.is-active .menu-book-page img');
+          if(image){const rect=image.getBoundingClientRect();menuBook.style.setProperty('--book-zoom-x',`${Math.max(0,Math.min(100,(event.clientX-rect.left)/rect.width*100))}%`);menuBook.style.setProperty('--book-zoom-y',`${Math.max(0,Math.min(100,(event.clientY-rect.top)/rect.height*100))}%`);}
+          return;
+        }
         if(dragging){
           deltaX=event.clientX-startX;
           const deltaY=event.clientY-startY;
@@ -258,29 +290,33 @@
         dragging=false;menuBook.classList.remove('is-dragging');
         if(stage.hasPointerCapture?.(event.pointerId))stage.releasePointerCapture(event.pointerId);
         const threshold=Math.min(86,stage.getBoundingClientRect().width*.1);
-        if(Math.abs(deltaX)>threshold)show(active+(deltaX<0?1:-1),deltaX<0?1:-1);
-        else resetDraggedSpread();
+        if(Math.abs(deltaX)>threshold)go(deltaX<0?1:-1);else resetDraggedSpread();
       });
       stage.addEventListener('pointercancel',()=>{dragging=false;deltaX=0;menuBook.classList.remove('is-dragging');resetDraggedSpread();});
       stage.addEventListener('pointerleave',()=>{if(!dragging)hideMagnifier();});
     }
-    if(fullscreenButton&&document.fullscreenEnabled){
-      fullscreenButton.addEventListener('click',async()=>{
-        if(document.fullscreenElement===menuBook)await document.exitFullscreen();
-        else await menuBook.requestFullscreen();
-      });
-      document.addEventListener('fullscreenchange',()=>{
-        const open=document.fullscreenElement===menuBook;
-        menuBook.classList.toggle('is-fullscreen',open);
-        fullscreenButton.setAttribute('aria-label',open?'Kilépés a teljes képernyőből':'Étlap megnyitása teljes képernyőn');
-        hideMagnifier();
-      });
-    }else if(fullscreenButton)fullscreenButton.hidden=true;
-    const syncInitialBookView=()=>{
-      if(mobileBookLayout.matches&&active===0)show(1,1);
-      fitBookToViewport();
+    const setFullscreen=open=>{
+      menuBook.classList.toggle('is-fullscreen-custom',open);
+      document.body.classList.toggle('menu-book-fullscreen-open',open);
+      fullscreenButton?.setAttribute('aria-label',open?'Kilépés a teljes képernyőből':'Étlap megnyitása teljes képernyőn');
+      hideMagnifier();clearTouchZoom();
+      if(open&&mobileBookLayout.matches){
+        const firstPage=pages.findIndex(item=>item.spreadIndex===active);
+        showPage(firstPage>=0?firstPage:pageActive,1);
+      }else if(!open){showSpread(pages[pageActive]?.spreadIndex??active,1);fitBookToViewport();}
     };
-    show(mobileBookLayout.matches?1:0);
+    fullscreenButton?.addEventListener('click',()=>setFullscreen(!menuBook.classList.contains('is-fullscreen-custom')));
+    zoomButton?.addEventListener('click',()=>{
+      const open=!menuBook.classList.contains('is-touch-zoomed');
+      menuBook.classList.toggle('is-touch-zoomed',open);
+      zoomButton.setAttribute('aria-pressed',String(open));
+      zoomButton.setAttribute('aria-label',open?'Nagyítás kikapcsolása':'Nagyítás bekapcsolása');
+    });
+    const syncInitialBookView=()=>{
+      if(menuBook.classList.contains('is-fullscreen-custom'))setFullscreen(false);
+      showSpread(mobileBookLayout.matches?1:active,1);fitBookToViewport();
+    };
+    showSpread(mobileBookLayout.matches?1:0);
     fitBookToViewport();
     mobileBookLayout.addEventListener?.('change',syncInitialBookView);
     window.addEventListener('resize',fitBookToViewport,{passive:true});
