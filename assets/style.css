@@ -3324,3 +3324,216 @@ body.order-dialog-open{overflow:hidden}
 @media(prefers-reduced-motion:reduce){
   .brand img,.footer-logo{transition:none!important}
 }
+/* v88 — mobile menu tools and reservation card */
+.menu-book-zoom {
+  position: absolute;
+  top: 12px;
+  right: 68px;
+  z-index: 8;
+  display: none;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(59, 44, 34, 0.16);
+  border-radius: 50%;
+  background: rgba(243, 236, 226, 0.94);
+  color: var(--olive);
+  box-shadow: 0 6px 16px rgba(59, 44, 34, 0.14);
+  transition: background-color 0.2s, color 0.2s, transform 0.2s;
+}
+
+.menu-book-zoom svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.menu-book-zoom:hover,
+.menu-book-zoom[aria-pressed="true"] {
+  background: var(--olive);
+  color: var(--cream);
+}
+
+.menu-book-zoom:focus-visible {
+  outline: 3px solid var(--terra);
+  outline-offset: 3px;
+}
+
+.menu-book-fullscreen {
+  display: grid !important;
+}
+
+body.menu-book-fullscreen-open {
+  overflow: hidden;
+}
+
+.menu-book.is-fullscreen-custom {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  margin: 0;
+  padding: 24px 76px;
+  display: grid;
+  place-items: center;
+  background: var(--cream);
+  overflow: hidden;
+}
+
+.menu-book.is-fullscreen-custom .menu-book-stage {
+  width: min(calc(100vw - 152px), calc((100dvh - 48px) * 0.9425));
+  max-width: none;
+}
+
+.menu-book.is-fullscreen-custom .menu-book-fullscreen {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+}
+
+.menu-book.is-fullscreen-custom .menu-book-arrow-prev {
+  left: 14px;
+}
+
+.menu-book.is-fullscreen-custom .menu-book-arrow-next {
+  right: 14px;
+}
+
+.reservation-card {
+  margin-top: 30px;
+  padding: 26px 28px 28px;
+  border: 1px solid rgba(243, 236, 226, 0.24);
+  border-radius: 0 46px 0 0;
+  background: rgba(243, 236, 226, 0.12);
+  box-shadow: 6px 6px 0 rgba(59, 44, 34, 0.24);
+}
+
+.reservation-card h3 {
+  color: var(--cream);
+  font-size: 30px;
+}
+
+.reservation-card p {
+  margin-top: 12px;
+  max-width: 560px;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.reservation-phone {
+  display: inline-flex;
+  margin-top: 17px;
+  padding: 12px 17px;
+  background: var(--cream);
+  color: var(--brown);
+  font-weight: 700;
+  transition: background-color 0.2s, color 0.2s, transform 0.2s;
+}
+
+.reservation-phone:hover {
+  background: var(--terra);
+  color: var(--cream);
+  transform: translateY(-2px);
+}
+
+@media (hover: none), (pointer: coarse) {
+  .menu-book-zoom {
+    display: grid !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .menu-book-zoom {
+    display: grid !important;
+    width: 38px;
+    height: 38px;
+    top: 8px;
+    right: 54px;
+  }
+
+  .menu-book-zoom svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .menu-book.is-fullscreen-custom {
+    padding: 14px 48px;
+  }
+
+  .menu-book.is-fullscreen-custom.is-mobile-single .menu-book-stage {
+    width: min(calc(100vw - 96px), calc((100dvh - 28px) * 0.4717));
+    max-width: none;
+    aspect-ratio: 993 / 2105;
+  }
+
+  .menu-book.is-mobile-single .menu-book-spread {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-book.is-mobile-single .menu-book-spread::after {
+    display: none;
+  }
+
+  .menu-book.is-mobile-single .menu-book-page {
+    display: none;
+  }
+
+  .menu-book.is-mobile-single .menu-book-page.is-mobile-page-active {
+    display: block;
+  }
+
+  .menu-book.is-fullscreen-custom .menu-book-arrow-prev {
+    left: 6px;
+  }
+
+  .menu-book.is-fullscreen-custom .menu-book-arrow-next {
+    right: 6px;
+  }
+
+  .menu-book.is-fullscreen-custom .menu-book-fullscreen {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+  }
+
+  .menu-book.is-fullscreen-custom .menu-book-zoom {
+    position: fixed;
+    top: 10px;
+    right: 56px;
+  }
+
+  .menu-book.is-touch-zoomed .menu-book-page {
+    overflow: hidden;
+  }
+
+  .menu-book.is-touch-zoomed.is-mobile-single .menu-book-page.is-mobile-page-active img,
+  .menu-book.is-touch-zoomed:not(.is-mobile-single) .menu-book-spread.is-active .menu-book-page img {
+    transform: scale(2.15);
+    transform-origin: var(--book-zoom-x, 50%) var(--book-zoom-y, 50%);
+    transition: transform 0.22s ease;
+  }
+
+  .reservation-card {
+    margin-top: 24px;
+    padding: 22px 20px 24px;
+    border-radius: 0 34px 0 0;
+  }
+
+  .reservation-card h3 {
+    font-size: 27px;
+  }
+
+  .reservation-card p {
+    font-size: 14px;
+  }
+
+  .reservation-phone {
+    font-size: 16px;
+  }
+}
