@@ -3585,3 +3585,161 @@ body.menu-book-fullscreen-open .menu-book.is-fullscreen-custom {
     display: none !important;
   }
 }
+
+/* v91: asztalfoglalás, SZÉP-kártyák és mobil étlap teljes képernyő */
+.menu-book-close {
+  display: none;
+}
+.reservation-phone {
+  animation: reservation-phone-pulse 2.4s ease-in-out infinite;
+}
+
+.reservation-phone:hover {
+  animation-play-state: paused;
+}
+
+@keyframes reservation-phone-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(171, 68, 40, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(171, 68, 40, 0.22);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reservation-phone {
+    animation: none;
+  }
+}
+
+@media (min-width: 761px) {
+  .visit .szep-payment p {
+    font-size: 1.05rem;
+  }
+
+  .visit .szep-card-stack {
+    min-height: 118px;
+  }
+
+  .visit .szep-card {
+    width: 166px !important;
+    height: 103px !important;
+    flex: 0 0 166px !important;
+  }
+
+  .visit .szep-kh,
+  .visit .szep-mbh {
+    margin-left: -31px !important;
+  }
+
+  .visit .szep-kh {
+    transform: translateY(8px) !important;
+  }
+
+  .visit .szep-mbh {
+    transform: translateY(17px) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .visit-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    row-gap: 24px !important;
+  }
+
+  .visit-grid > .visit-copy,
+  .visit-grid > .map-card {
+    display: contents;
+  }
+
+  .visit-copy h2 {
+    order: 1;
+  }
+
+  .map-card .reservation-card {
+    order: 2;
+    margin-top: 0;
+  }
+
+  .visit-copy address {
+    order: 3;
+    margin-top: 0;
+  }
+
+  .visit-copy .szep-payment {
+    order: 4;
+    margin-top: 0;
+  }
+
+  .visit-copy > .small {
+    order: 5;
+    margin-top: 0;
+  }
+
+  .map-card .google-map-wrap {
+    order: 6;
+  }
+
+  .map-card .map-route-button {
+    order: 7;
+    justify-self: center;
+  }
+
+  .menu-book.is-fullscreen-custom {
+    padding: 60px 52px 18px !important;
+    place-items: center !important;
+    align-content: center !important;
+  }
+
+  .menu-book.is-fullscreen-custom.is-mobile-single .menu-book-stage {
+    width: min(calc(100vw - 104px), calc((100dvh - 96px) * 0.4717)) !important;
+    max-width: 100% !important;
+    max-height: calc(100dvh - 96px) !important;
+    min-height: 0 !important;
+    aspect-ratio: 993 / 2105 !important;
+    align-self: center !important;
+    overflow: hidden !important;
+  }
+
+  .menu-book.is-fullscreen-custom .menu-book-spread,
+  .menu-book.is-fullscreen-custom .menu-book-page,
+  .menu-book.is-fullscreen-custom .menu-book-page img {
+    max-height: 100% !important;
+  }
+
+  .menu-book.is-fullscreen-custom .menu-book-page img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+  }
+
+  .menu-book.is-fullscreen-custom .menu-book-fullscreen {
+    display: none !important;
+  }
+
+  body.menu-book-fullscreen-open .site-header {
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  .menu-book.is-fullscreen-custom .menu-book-close {
+    position: fixed !important;
+    top: max(12px, env(safe-area-inset-top)) !important;
+    right: max(12px, env(safe-area-inset-right)) !important;
+    z-index: 1100 !important;
+    width: 44px !important;
+    height: 44px !important;
+    display: grid !important;
+    place-items: center !important;
+    border: 2px solid var(--cream) !important;
+    border-radius: 50% !important;
+    background: var(--terra) !important;
+    color: var(--cream) !important;
+    box-shadow: 0 4px 16px rgba(59, 44, 34, 0.28) !important;
+    font: 400 32px/1 Karla, Arial, sans-serif;
+    padding: 0 0 3px !important;
+    cursor: pointer;
+  }
+}

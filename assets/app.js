@@ -173,6 +173,7 @@
     const stage=menuBook.querySelector('.menu-book-stage');
     const magnifier=menuBook.querySelector('[data-book-magnifier]');
     const fullscreenButton=menuBook.querySelector('[data-book-fullscreen]');
+    const closeButton=menuBook.querySelector('[data-book-close]');
     const zoomButton=menuBook.querySelector('[data-book-zoom]');
     const labels=['Címlap','Ételek · 1–2. oldal','Italok · 3–4. oldal','Hátlap'];
     const pageLabels=pages.map(({page},index)=>page.querySelector('img')?.alt||`${index+1}. oldal`);
@@ -306,6 +307,11 @@
       }else if(!open){showSpread(pages[pageActive]?.spreadIndex??active,1);fitBookToViewport();}
     };
     fullscreenButton?.addEventListener('click',()=>setFullscreen(!menuBook.classList.contains('is-fullscreen-custom')));
+    closeButton?.addEventListener('click',event=>{
+      event.preventDefault();
+      event.stopPropagation();
+      setFullscreen(false);
+    });
     zoomButton?.addEventListener('click',()=>{
       if(mobileBookLayout.matches)return;
       const open=!menuBook.classList.contains('is-touch-zoomed');
