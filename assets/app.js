@@ -3,12 +3,43 @@
   const header=document.querySelector('.site-header');
   const toggle=document.querySelector('.menu-toggle');
   const nav=document.querySelector('#navigation');
+  const normalizePath=path=>{
+    const normalized=(path||'/').replace(/\/index\.html$/i,'/');
+    return normalized.endsWith('/')?normalized:`${normalized}/`;
+  };
   if(toggle&&nav){
     header.classList.add('enhanced');toggle.hidden=false;
     const setMenu=open=>{nav.classList.toggle('open',open);toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Menü bezárása':'Menü megnyitása');document.body.classList.toggle('menu-open',open);};
     const close=()=>setMenu(false);
     toggle.addEventListener('click',()=>setMenu(toggle.getAttribute('aria-expanded')!=='true'));
-    nav.addEventListener('click',e=>{if(e.target.closest('a'))close();});
+    nav.addEventListener('click',e=>{
+      const link=e.target.closest('a');
+      if(!link)return;
+      const url=new URL(link.href,window.location.href);
+      const samePage=url.origin===window.location.origin&&normalizePath(url.pathname)===normalizePath(window.location.pathname);
+      if(samePage&&url.hash&&window.matchMedia('(max-width: 1100px)').matches){
+        const target=document.querySelector(url.hash);
+        if(target){
+          e.preventDefault();
+          close();
+          const scrollToTarget=()=>{
+            const headerHeight=header?.getBoundingClientRect().height||0;
+            const top=Math.max(0,target.getBoundingClientRect().top+window.scrollY-headerHeight-14);
+            const previousScrollBehavior=document.documentElement.style.scrollBehavior;
+            document.documentElement.style.scrollBehavior='auto';
+            window.scrollTo({top,behavior:'auto'});
+            requestAnimationFrame(()=>{document.documentElement.style.scrollBehavior=previousScrollBehavior;});
+          };
+          requestAnimationFrame(()=>requestAnimationFrame(()=>{
+            scrollToTarget();
+            window.setTimeout(scrollToTarget,180);
+            history.pushState(null,'',url.hash);
+          }));
+          return;
+        }
+      }
+      close();
+    });
     document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav.classList.contains('open')){close();toggle.focus();}});
     window.matchMedia('(min-width: 1101px)').addEventListener('change',close);
   }
