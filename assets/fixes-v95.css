@@ -1,0 +1,149 @@
+/* v95: desktop PDF menu fullscreen is always contained by the viewport. */
+@media (min-width: 761px) {
+  body.menu-book-fullscreen-open {
+    overflow: hidden !important;
+  }
+
+  body.menu-book-fullscreen-open .site-header {
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  .menu-book.is-fullscreen-custom {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 2147483000 !important;
+    box-sizing: border-box !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    max-width: none !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 36px 82px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+    background: var(--cream) !important;
+    border-radius: 0 !important;
+    transform: none !important;
+  }
+
+  .menu-book.is-fullscreen-custom .menu-book-stage {
+    position: relative !important;
+    flex: 0 0 auto !important;
+    box-sizing: border-box !important;
+    width: min(calc(100vw - 164px), calc((100dvh - 72px) * .94252)) !important;
+    height: auto !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: calc(100vw - 164px) !important;
+    max-height: calc(100dvh - 72px) !important;
+    aspect-ratio: 1984 / 2105 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    transform: none !important;
+  }
+
+  .menu-book.is-fullscreen-custom.is-cover .menu-book-stage,
+  .menu-book.is-fullscreen-custom.is-back .menu-book-stage {
+    width: min(calc(100vw - 164px), calc((100dvh - 72px) * .47173)) !important;
+    aspect-ratio: 993 / 2105 !important;
+  }
+
+  .menu-book.is-fullscreen-custom .menu-book-spread {
+    position: absolute !important;
+    inset: 0 !important;
+    box-sizing: border-box !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    transform: none !important;
+  }
+
+  .menu-book.is-fullscreen-custom.is-cover .menu-book-spread.is-active,
+  .menu-book.is-fullscreen-custom.is-back .menu-book-spread.is-active {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .menu-book.is-fullscreen-custom.is-cover .menu-book-spread.is-active .menu-book-page.menu-book-blank,
+  .menu-book.is-fullscreen-custom.is-back .menu-book-spread.is-active .menu-book-page.menu-book-blank {
+    display: none !important;
+  }
+
+  .menu-book.is-fullscreen-custom .menu-book-page {
+    box-sizing: border-box !important;
+    width: auto !important;
+    height: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: none !important;
+    max-height: 100% !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .menu-book.is-fullscreen-custom .menu-book-page img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: fill !important;
+    object-position: center !important;
+    transform: none !important;
+  }
+
+  .menu-book.is-fullscreen-custom .menu-book-fullscreen,
+  .menu-book.is-fullscreen-custom .menu-book-zoom {
+    display: none !important;
+  }
+
+  .menu-book.is-fullscreen-custom .menu-book-close {
+    position: fixed !important;
+    top: 18px !important;
+    right: 18px !important;
+    z-index: 2147483647 !important;
+    box-sizing: border-box !important;
+    width: 50px !important;
+    height: 50px !important;
+    padding: 0 0 3px !important;
+    display: grid !important;
+    place-items: center !important;
+    border: 2px solid var(--cream) !important;
+    border-radius: 50% !important;
+    background: var(--terra) !important;
+    color: var(--cream) !important;
+    box-shadow: 0 5px 18px rgba(59, 44, 34, .32) !important;
+    font: 400 34px/1 Karla, Arial, sans-serif !important;
+    cursor: pointer !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: none !important;
+  }
+
+  .menu-book.is-fullscreen-custom .menu-book-arrow {
+    position: fixed !important;
+    top: 50% !important;
+    z-index: 2147483646 !important;
+    transform: translateY(-50%) !important;
+  }
+
+  .menu-book.is-fullscreen-custom .menu-book-arrow-prev {
+    left: 18px !important;
+  }
+
+  .menu-book.is-fullscreen-custom .menu-book-arrow-next {
+    right: 18px !important;
+  }
+}
