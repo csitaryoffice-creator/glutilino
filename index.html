@@ -3,17 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src &#x27;self&#x27;; script-src &#x27;self&#x27; &#x27;sha256-Ov9Z1wcxmJk1yiwxKAOavHxxVjlBROKBOkN0x5L8jXU=&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27; data:; font-src &#x27;self&#x27;; media-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; frame-src https://www.google.com; object-src &#x27;none&#x27;; base-uri &#x27;self&#x27;; form-action &#x27;none&#x27;">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;self&#x27;; script-src &#x27;self&#x27; https://www.googletagmanager.com &#x27;sha256-Ov9Z1wcxmJk1yiwxKAOavHxxVjlBROKBOkN0x5L8jXU=&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27; data: https://www.google-analytics.com; font-src &#x27;self&#x27;; media-src &#x27;self&#x27;; connect-src &#x27;self&#x27; https://www.google-analytics.com https://region1.google-analytics.com; frame-src https://www.google.com; object-src &#x27;none&#x27;; base-uri &#x27;self&#x27;; form-action &#x27;none&#x27;">
 <title>glutiliNO | Gluténmentes pizzéria és pékség Budapest</title>
-<meta name="description" content="Nápolyi pizza, kézműves kenyér és desszertek gluténmentesen. glutiliNO, 1138 Budapest, Párkány utca 8. Fedezd fel a kínálatunkat!">
+<meta name="description" content="100% gluténmentes nápolyi pizzák, kézműves kenyerek és desszertek Budapesten, a XIII. kerületben. Fedezd fel a glutiliNO kínálatát és étlapját!">
 <meta name="robots" content="noindex,follow">
 <meta name="theme-color" content="#F3ECE2">
+<meta name="google-analytics-id" content="">
 <link rel="canonical" href="https://www.glutilino.hu/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="hu_HU">
 <meta property="og:site_name" content="glutiliNO">
 <meta property="og:title" content="glutiliNO | Gluténmentes pizzéria és pékség Budapest">
-<meta property="og:description" content="Nápolyi pizza, kézműves kenyér és desszertek gluténmentesen. glutiliNO, 1138 Budapest, Párkány utca 8. Fedezd fel a kínálatunkat!">
+<meta property="og:description" content="100% gluténmentes nápolyi pizzák, kézműves kenyerek és desszertek Budapesten, a XIII. kerületben. Fedezd fel a glutiliNO kínálatát és étlapját!">
 <meta property="og:url" content="https://www.glutilino.hu/">
 <meta property="og:image" content="https://www.glutilino.hu/assets/social.jpg">
 <meta property="og:image:width" content="1200">
@@ -27,9 +28,13 @@
 <link rel="preload" href="assets/fonts/callonsky-hu.otf" as="font" type="font/otf" crossorigin>
 <link rel="stylesheet" href="assets/style.css?v=94">
 <link rel="stylesheet" href="assets/fixes-v94.css?v=94">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Restaurant","@id":"https://www.glutilino.hu/#etterem","name":"glutiliNO – Kézműves Gluténmentes Pizzéria és Pékség","url":"https://www.glutilino.hu/","image":"https://www.glutilino.hu/assets/social.jpg","telephone":"+36300743932","email":"glutilino@glutilino.hu","address":{"@type":"PostalAddress","streetAddress":"Párkány utca 8.","postalCode":"1138","addressLocality":"Budapest","addressCountry":"HU"},"servesCuisine":["Olasz","Gluténmentes"],"hasMenu":"https://www.glutilino.hu/etlap.html","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"11:00","closes":"22:00"}]}</script>
+<link rel="stylesheet" href="assets/fixes-v96.css?v=97">
+<link rel="stylesheet" href="assets/cookie-consent.css?v=2">
+<script src="assets/consent-default.js?v=1"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Restaurant","@id":"https://www.glutilino.hu/#etterem","name":"glutiliNO","description":"100% gluténmentes pizzéria és pékség Budapesten, nápolyi pizzákkal, kézműves kenyerekkel és desszertekkel.","url":"https://www.glutilino.hu/","image":"https://www.glutilino.hu/assets/social.jpg","telephone":"+36300743932","email":"glutilino@glutilino.hu","address":{"@type":"PostalAddress","streetAddress":"Párkány utca 8.","postalCode":"1138","addressLocality":"Budapest","addressCountry":"HU"},"servesCuisine":"Olasz","acceptsReservations":true,"hasMenu":"https://www.glutilino.hu/etlap.html","sameAs":["https://www.facebook.com/people/Glutilino/61583295550470/","https://www.tiktok.com/@glutilino"],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"11:00","closes":"22:00"}]}</script>
 <script src="assets/app.js?v=94" defer>
 </script>
+<script src="assets/cookie-consent.js?v=2" defer></script>
 </head>
 <body class="">
 <a class="skip" href="#tartalom">Ugrás a tartalomra</a>
@@ -67,7 +72,8 @@
 <div class="hero-copy">
 <h1 id="hero-title"><span class="hero-title-opening">Nem csak</span> <span class="hero-accent">gluténérzékenyeknek</span>.
 <br><span class="hero-title-closing"><span>Mindenkinek, aki</span> <span>jót szeretne enni.</span></span></h1>
-<p>Felejtsd el a száraz, morzsálódó kenyeret, az ízetlen pizzatésztát és a fanyar sütiket! Nálunk frissen sült nápolyi pizzák, kézműves kenyerek és desszertek várnak, mind gluténmentesen.</p>
+<p class="hero-description hero-description-desktop">Felejtsd el a száraz, morzsálódó kenyeret, az ízetlen pizzatésztát és a fanyar sütiket! Nálunk frissen sült nápolyi pizzák, kézműves kenyerek és desszertek várnak, mind gluténmentesen.</p>
+<p class="hero-description hero-description-mobile">Felejtsd el a száraz, morzsálódó kenyeret, az ízetlen pizzatésztát és a fanyar sütiket! Nálunk nápolyi stílusú pizzák, kézműves kenyerek és desszertek várnak, mind gluténmentesen.</p>
 <p class="hero-question">
 <strong>Készen állsz a gluténmentes forradalomra?</strong>
 </p>
@@ -440,7 +446,7 @@
 <a class="reservation-phone" href="tel:+36300743932">+36 30 074 3932</a>
 </div>
 <div class="google-map-wrap">
-<iframe class="google-map-frame" title="Google Maps – glutiliNO, 1138 Budapest, Párkány utca 8." src="https://www.google.com/maps?q=Glutilino%201138%20Budapest%20P%C3%A1rk%C3%A1ny%20utca%208&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
+<iframe class="google-map-frame" title="Google Maps – glutiliNO, 1138 Budapest, Párkány utca 8." data-cookie-src="https://www.google.com/maps?q=Glutilino%201138%20Budapest%20P%C3%A1rk%C3%A1ny%20utca%208&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen hidden>
 </iframe>
 </div>
 <a class="button cream map-route-button" href="https://www.google.com/maps/dir/?api=1&amp;destination=Glutilino%201138%20Budapest%20P%C3%A1rk%C3%A1ny%20utca%208" target="_blank" rel="noopener noreferrer">Útvonaltervezés</a>
