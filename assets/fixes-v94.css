@@ -1,0 +1,63 @@
+/* Production fixes: desktop PDF fullscreen, mobile hero hierarchy. */
+@media (min-width: 761px) {
+  .menu-book.is-fullscreen-custom .menu-book-spread {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .menu-book.is-fullscreen-custom.is-cover .menu-book-spread.is-active,
+  .menu-book.is-fullscreen-custom.is-back .menu-book-spread.is-active {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .menu-book.is-fullscreen-custom.is-cover .menu-book-spread.is-active .menu-book-blank,
+  .menu-book.is-fullscreen-custom.is-back .menu-book-spread.is-active .menu-book-blank {
+    display: none !important;
+  }
+
+  .menu-book.is-fullscreen-custom .menu-book-page {
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: 100% !important;
+    overflow: hidden !important;
+  }
+
+  .menu-book.is-fullscreen-custom .menu-book-page img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+  }
+
+  .menu-book.is-fullscreen-custom .menu-book-close {
+    display: grid !important;
+    position: fixed !important;
+    top: max(18px, env(safe-area-inset-top)) !important;
+    right: max(18px, env(safe-area-inset-right)) !important;
+    z-index: 10004 !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero h1 {
+    font-size: clamp(66px, 18vw, 84px) !important;
+    line-height: .8 !important;
+    -webkit-text-stroke: .65px currentColor !important;
+    paint-order: stroke fill;
+    text-shadow: .55px 0 currentColor, -.55px 0 currentColor, 0 .55px currentColor, 0 -.55px currentColor !important;
+  }
+
+  .hero h1 .hero-accent {
+    -webkit-text-stroke: 2.2px #fff !important;
+    text-shadow: none !important;
+  }
+}
+
+@media (max-width: 380px), (max-height: 690px) {
+  .hero h1 {
+    font-size: clamp(56px, 15.8vw, 68px) !important;
+    line-height: .82 !important;
+  }
+}
