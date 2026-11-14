@@ -1,4 +1,8 @@
 /* Production fixes: desktop PDF fullscreen, mobile hero hierarchy. */
+.hero .hero-copy > .hero-description-mobile {
+  display: none;
+}
+
 @media (min-width: 761px) {
   .menu-book.is-fullscreen-custom .menu-book-spread {
     display: grid !important;
@@ -41,6 +45,27 @@
 }
 
 @media (max-width: 760px) {
+  .hero .hero-copy > .hero-description-desktop {
+    display: none !important;
+  }
+
+  .hero .hero-copy > .hero-description-mobile {
+    display: block !important;
+    margin-top: 0 !important;
+  }
+
+  .hero h1 > br {
+    display: none;
+  }
+
+  .hero h1 .hero-title-closing {
+    margin-top: .17em !important;
+  }
+
+  .hero .hero-copy > .hero-question {
+    display: none !important;
+  }
+
   .hero h1 {
     font-size: clamp(66px, 18vw, 84px) !important;
     line-height: .8 !important;
