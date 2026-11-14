@@ -1,0 +1,313 @@
+/* v96 – kizárólag tablet nézet (761–1050 px) */
+@media (min-width: 761px) and (max-width: 1050px) {
+  .wrap {
+    width: min(920px, calc(100% - 56px));
+  }
+
+  .section {
+    padding-block: 72px;
+  }
+
+  .craft-copy h2,
+  .free-copy h2,
+  .story-copy h2,
+  .gift-copy h2,
+  .visit-copy h2 {
+    max-width: 900px;
+    margin: 0;
+    font-size: clamp(44px, 6vw, 58px);
+    line-height: 1.04;
+  }
+
+  /* Hosszan érlelt pizzatészta: cím → pizza → szöveg */
+  .craft-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+  }
+
+  .craft-copy {
+    display: contents;
+  }
+
+  .craft-copy h2 {
+    order: 1;
+  }
+
+  .craft-copy h2 span,
+  .craft-copy h2 em {
+    display: block;
+  }
+
+  .craft-picture {
+    order: 2;
+    width: min(600px, 72vw);
+    aspect-ratio: 1 / 1;
+    min-height: 0;
+    margin: 2px 0;
+    justify-self: center;
+  }
+
+  .craft-picture .pizza-scroll,
+  .craft-picture .pizza-scroll img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+  }
+
+  .craft-picture .pizza-scroll img {
+    object-fit: contain;
+  }
+
+  .craft-copy .intro {
+    order: 3;
+    max-width: 780px;
+    margin: 0;
+  }
+
+  .craft-points {
+    order: 4;
+    margin-top: 0;
+  }
+
+  /* 100% gluténmentes: cím → pecsét → szöveg */
+  .free {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+    align-items: start;
+  }
+
+  .free-copy {
+    display: contents;
+  }
+
+  .free-copy h2 {
+    order: 1;
+  }
+
+  .free-seal {
+    order: 2;
+    width: min(330px, 42vw);
+    margin: 2px 0;
+    justify-self: center;
+  }
+
+  .free-copy > p {
+    order: 3;
+    max-width: 780px;
+    margin-block: 0;
+  }
+
+  .free-copy > p + p {
+    margin-top: 6px;
+  }
+
+  .free-copy .allergen-note {
+    margin-top: 10px;
+  }
+
+  /* Történet: cím → csoportkép → szöveg és CTA */
+  .story-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+    align-items: start;
+  }
+
+  .story-copy {
+    display: contents;
+  }
+
+  .story-copy h2 {
+    order: 1;
+  }
+
+  .story-grid figure {
+    order: 2;
+    width: min(760px, 100%);
+    min-height: 0;
+    margin: 0;
+    justify-self: center;
+  }
+
+  .story-grid figure img {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 1.7;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .story-copy > p {
+    order: 3;
+    max-width: 780px;
+    margin-block: 0;
+  }
+
+  .story-copy > p + p {
+    margin-top: 6px;
+  }
+
+  .story-copy .story-cta {
+    order: 4;
+    margin-top: 6px;
+    justify-self: start;
+  }
+
+  /* Ajándékutalvány: cím → kártya → szöveg és CTA */
+  .gift-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+    align-items: start;
+  }
+
+  .gift-copy {
+    display: contents;
+  }
+
+  .gift-copy h2 {
+    order: 1;
+  }
+
+  .gift-photo {
+    order: 2;
+    width: min(680px, 90%);
+    aspect-ratio: 3 / 2;
+    min-height: 0;
+    margin: 0;
+    justify-self: center;
+  }
+
+  .gift-photo img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: contain;
+  }
+
+  .gift-copy > p {
+    order: 3;
+    max-width: 780px;
+    margin-block: 0;
+  }
+
+  .gift-copy > p + p {
+    margin-top: 6px;
+  }
+
+  .gift-copy .gift-cta {
+    order: 4;
+    margin-top: 8px;
+    justify-self: start;
+  }
+
+  /* Kapcsolat: cím → asztalfoglalás → adatok → térkép */
+  .visit-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+    align-items: start;
+  }
+
+  .visit-copy,
+  .map-card {
+    display: contents;
+  }
+
+  .visit-copy h2 {
+    order: 1;
+  }
+
+  .map-card .reservation-card {
+    order: 2;
+    width: 100%;
+    margin: 0;
+    justify-self: stretch;
+  }
+
+  .visit-copy address {
+    order: 3;
+    margin-top: 0;
+  }
+
+  .visit-copy .szep-payment {
+    order: 4;
+    margin-top: 0;
+  }
+
+  .visit-copy > .small {
+    order: 5;
+    margin: 0;
+  }
+
+  .map-card .google-map-wrap {
+    order: 6;
+    width: 100%;
+  }
+
+  .map-card .map-route-button {
+    order: 7;
+    width: auto;
+    margin-top: 0;
+    justify-self: start;
+  }
+
+  /* Étlap: a teljes szűrősáv kifér tablet nézetben is. */
+  body.menu-page .filter-bar {
+    overflow: visible;
+  }
+
+  body.menu-page .filters {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    overflow: visible;
+    padding-block: 12px;
+  }
+
+  body.menu-page .filters button {
+    width: 100%;
+    min-width: 0;
+    padding: 10px 6px;
+    border: 1px solid rgba(86, 97, 35, 0.28);
+    white-space: normal;
+    font-size: 12px;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  body.menu-page .filters button[aria-pressed="true"] {
+    border-color: #566123;
+    background: #566123;
+    color: #fff;
+  }
+}
+
+/* Mobil hero: tudatosabb tipográfiai ritmus, kizárólag telefonon. */
+@media (max-width: 760px) {
+  .hero .hero-copy > h1 {
+    margin-bottom: clamp(42px, 6.5svh, 60px) !important;
+  }
+
+  .hero .hero-copy > .hero-description-mobile {
+    margin-top: 0 !important;
+  }
+
+  .hero .hero-actions {
+    margin-top: clamp(38px, 5.5svh, 52px) !important;
+  }
+}
+
+@media (max-width: 380px), (max-width: 760px) and (max-height: 700px) {
+  .hero .hero-copy > h1 {
+    margin-bottom: 30px !important;
+  }
+
+  .hero .hero-actions {
+    margin-top: 28px !important;
+  }
+}
