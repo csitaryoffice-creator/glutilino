@@ -3,12 +3,39 @@
   const header=document.querySelector('.site-header');
   const toggle=document.querySelector('.menu-toggle');
   const nav=document.querySelector('#navigation');
+  const heroDescription=document.querySelector('.hero-description[data-desktop-text][data-mobile-text]');
+  if(heroDescription){
+    const mobileHero=window.matchMedia('(max-width: 760px)');
+    const syncHeroDescription=()=>{
+      heroDescription.textContent=mobileHero.matches?heroDescription.dataset.mobileText:heroDescription.dataset.desktopText;
+      heroDescription.hidden=false;
+    };
+    syncHeroDescription();
+    mobileHero.addEventListener('change',syncHeroDescription);
+  }
+  const heroTitle=document.querySelector('#hero-title');
+  if(heroTitle){
+    let titleRevealed=false;
+    const revealHeroTitle=()=>{
+      if(titleRevealed)return;
+      titleRevealed=true;
+      heroTitle.hidden=false;
+      requestAnimationFrame(()=>heroTitle.classList.add('hero-title-ready'));
+    };
+    if(document.fonts?.load){
+      Promise.allSettled([
+        document.fonts.load('400 72px "Callonsky Script HU"'),
+        document.fonts.load('400 72px "Callonsky Script"')
+      ]).then(revealHeroTitle);
+      window.setTimeout(revealHeroTitle,1800);
+    }else revealHeroTitle();
+  }
   const normalizePath=path=>{
     const normalized=(path||'/').replace(/\/index\.html$/i,'/');
     return normalized.endsWith('/')?normalized:`${normalized}/`;
   };
   if(toggle&&nav){
-    header.classList.add('enhanced');toggle.hidden=false;
+    header.classList.add('enhanced');toggle.hidden=false;nav.hidden=false;
     const setMenu=open=>{nav.classList.toggle('open',open);toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Menü bezárása':'Menü megnyitása');document.body.classList.toggle('menu-open',open);};
     const close=()=>setMenu(false);
     toggle.addEventListener('click',()=>setMenu(toggle.getAttribute('aria-expanded')!=='true'));
