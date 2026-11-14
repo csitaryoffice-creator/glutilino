@@ -19,15 +19,15 @@
     const revealHeroTitle=()=>{
       if(titleRevealed)return;
       titleRevealed=true;
-      heroTitle.hidden=false;
-      requestAnimationFrame(()=>heroTitle.classList.add('hero-title-ready'));
+      heroTitle.classList.add('hero-title-ready');
+      requestAnimationFrame(()=>{heroTitle.hidden=false;});
     };
     if(document.fonts?.load){
       Promise.allSettled([
         document.fonts.load('400 72px "Callonsky Script HU"'),
         document.fonts.load('400 72px "Callonsky Script"')
-      ]).then(revealHeroTitle);
-      window.setTimeout(revealHeroTitle,1800);
+      ]).then(()=>document.fonts.ready).then(revealHeroTitle);
+      window.setTimeout(()=>document.fonts.ready.then(revealHeroTitle),2500);
     }else revealHeroTitle();
   }
   const normalizePath=path=>{
