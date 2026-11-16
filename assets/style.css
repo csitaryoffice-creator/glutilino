@@ -1,14 +1,3 @@
-@font-face {
-  font-family: 'Callonsky Script HU';
-  font-style: normal;
-  font-weight: 400;
-  font-display: block;
-  src: url(fonts/callonsky-hu.otf) format('opentype');
-  unicode-range: U+00C1, U+00C9, U+00CD, U+00D3, U+00D6, U+00DA, U+00DC,
-    U+00E1, U+00E9, U+00ED, U+00F3, U+00F6, U+00FA, U+00FC,
-    U+0150-0151, U+0170-0171;
-}
-
 /* v92: stabil mobil célugrás, hangsúlyos mobil hero, javított asztali étlap-fullscreen */
 #kapcsolat,
 #asztalfoglalas {
@@ -200,12 +189,68 @@
   }
 }
 
+/* v105: dairy-free menu labels */
+.dairy-free-ribbon {
+  position: absolute;
+  left: 18px;
+  right: auto;
+  bottom: 18px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #3B2C22;
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(59, 44, 34, .24);
+  font-size: .78rem;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.dairy-free-ribbon svg {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (max-width: 760px) {
+  .dairy-free-ribbon {
+    left: 12px;
+    right: auto;
+    bottom: 12px;
+    gap: 7px;
+    padding: 8px 11px;
+    font-size: .67rem;
+  }
+
+  .dairy-free-ribbon svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
 @font-face {
-  font-family: 'Callonsky Script';
+  font-family: 'Callonsky Script Web';
   font-style: normal;
   font-weight: 400;
   font-display: block;
-  src: url(fonts/callonsky-demo.otf) format('opentype');
+  src: url(fonts/callonsky-web.otf?v=104) format('opentype');
+}
+
+/* Keep the complete hero message out of the first paint until its real
+   display typeface is ready. This prevents both fallback-font ghosting and
+   the headline arriving later than the surrounding copy and buttons. */
+html.hero-font-pending .hero-copy {
+  visibility: hidden !important;
 }
 
 @font-face {
@@ -1500,7 +1545,7 @@ body.menu-page .menu-content{z-index:0}
 
 /* v39: új hero cím, desktop CTA és kapcsolati frissítések */
 .hero h1{
-  font-family:"Callonsky Script HU","Callonsky Script",cursive;
+  font-family:"Callonsky Script Web",cursive;
   font-weight:400;
   font-style:normal;
   font-synthesis:none;
