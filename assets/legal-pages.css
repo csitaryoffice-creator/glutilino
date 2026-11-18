@@ -1,0 +1,62 @@
+/* Consistent vertical rhythm for the long-form legal pages. */
+.legal > h1 {
+  margin-bottom: 44px;
+}
+
+.legal > h2 {
+  margin: 68px 0 24px;
+  line-height: 1.16;
+}
+
+.legal > h3 {
+  margin: 42px 0 16px;
+  line-height: 1.22;
+}
+
+.legal > h2 + h3,
+.legal > h3 + h3 {
+  margin-top: 26px;
+}
+
+.legal > p + p {
+  margin-top: 18px;
+}
+
+.legal > ul {
+  margin: 18px 0 30px;
+  padding-left: 1.35em;
+}
+
+.legal > ul li {
+  padding-left: 0.25em;
+}
+
+.legal > ul li + li {
+  margin-top: 10px;
+}
+
+@media (max-width: 760px) {
+  .legal > h1 {
+    margin-bottom: 36px;
+  }
+
+  .legal > h2 {
+    margin: 54px 0 20px;
+    font-size: 28px;
+  }
+
+  .legal > h3 {
+    margin: 34px 0 14px;
+    font-size: 23px;
+  }
+
+  .legal > h2 + h3,
+  .legal > h3 + h3 {
+    margin-top: 22px;
+  }
+
+  .legal > ul {
+    margin: 16px 0 26px;
+    padding-left: 1.2em;
+  }
+}
