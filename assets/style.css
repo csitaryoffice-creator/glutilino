@@ -248,9 +248,9 @@
 }
 
 @media (max-width: 760px) {
-  /* On phones the menu sits to the left and the smaller flag at the far right. */
+  /* On phones the menu sits at the far right and the flag just inside it. */
   .language-switch {
-    right: 14px;
+    right: 70px;
     width: 36px;
     height: 27px;
   }
@@ -260,7 +260,7 @@
   }
   .menu-toggle:not([hidden]) {
     margin-left: auto !important;
-    margin-right: 42px !important;
+    margin-right: 0 !important;
   }
 }
 
