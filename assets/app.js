@@ -13,26 +13,12 @@
     syncHeroDescription();
     mobileHero.addEventListener('change',syncHeroDescription);
   }
-  const heroTitle=document.querySelector('#hero-title');
-  if(heroTitle){
-    let titleRevealed=false;
-    const revealHeroTitle=()=>{
-      if(titleRevealed)return;
-      titleRevealed=true;
-      heroTitle.classList.add('hero-title-ready');
-      requestAnimationFrame(()=>{heroTitle.hidden=false;});
-    };
-    if(document.fonts?.load){
-      Promise.allSettled([
-        document.fonts.load('400 72px "Callonsky Script HU"'),
-        document.fonts.load('400 72px "Callonsky Script"')
-      ]).then(()=>document.fonts.ready).then(revealHeroTitle);
-      window.setTimeout(()=>document.fonts.ready.then(revealHeroTitle),2500);
-    }else revealHeroTitle();
-  }
   const normalizePath=path=>{
-    const normalized=(path||'/').replace(/\/index\.html$/i,'/');
-    return normalized.endsWith('/')?normalized:`${normalized}/`;
+    const normalized=(path||'/')
+      .replace(/\/index(?:\.html)?$/i,'/')
+      .replace(/\.html$/i,'')
+      .replace(/\/+$/,'');
+    return normalized||'/';
   };
   if(toggle&&nav){
     header.classList.add('enhanced');toggle.hidden=false;nav.hidden=false;

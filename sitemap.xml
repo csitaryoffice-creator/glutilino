@@ -1,1 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://www.glutilino.hu/</loc></url><url><loc>https://www.glutilino.hu/etlap.html</loc></url><url><loc>https://www.glutilino.hu/adatvedelem.html</loc></url><url><loc>https://www.glutilino.hu/impresszum.html</loc></url></urlset>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://www.glutilino.hu/</loc><xhtml:link rel="alternate" hreflang="hu" href="https://www.glutilino.hu/"/><xhtml:link rel="alternate" hreflang="en" href="https://www.glutilino.hu/en/"/></url>
+  <url><loc>https://www.glutilino.hu/en/</loc><xhtml:link rel="alternate" hreflang="hu" href="https://www.glutilino.hu/"/><xhtml:link rel="alternate" hreflang="en" href="https://www.glutilino.hu/en/"/></url>
+  <url><loc>https://www.glutilino.hu/etlap</loc><xhtml:link rel="alternate" hreflang="hu" href="https://www.glutilino.hu/etlap"/><xhtml:link rel="alternate" hreflang="en" href="https://www.glutilino.hu/en/menu"/></url>
+  <url><loc>https://www.glutilino.hu/en/menu</loc><xhtml:link rel="alternate" hreflang="hu" href="https://www.glutilino.hu/etlap"/><xhtml:link rel="alternate" hreflang="en" href="https://www.glutilino.hu/en/menu"/></url>
+  <url><loc>https://www.glutilino.hu/adatvedelem</loc><xhtml:link rel="alternate" hreflang="hu" href="https://www.glutilino.hu/adatvedelem"/><xhtml:link rel="alternate" hreflang="en" href="https://www.glutilino.hu/en/privacy"/></url>
+  <url><loc>https://www.glutilino.hu/en/privacy</loc><xhtml:link rel="alternate" hreflang="hu" href="https://www.glutilino.hu/adatvedelem"/><xhtml:link rel="alternate" hreflang="en" href="https://www.glutilino.hu/en/privacy"/></url>
+  <url><loc>https://www.glutilino.hu/impresszum</loc><xhtml:link rel="alternate" hreflang="hu" href="https://www.glutilino.hu/impresszum"/><xhtml:link rel="alternate" hreflang="en" href="https://www.glutilino.hu/en/imprint"/></url>
+  <url><loc>https://www.glutilino.hu/en/imprint</loc><xhtml:link rel="alternate" hreflang="hu" href="https://www.glutilino.hu/impresszum"/><xhtml:link rel="alternate" hreflang="en" href="https://www.glutilino.hu/en/imprint"/></url>
+</urlset>

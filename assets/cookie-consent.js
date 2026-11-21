@@ -29,7 +29,7 @@
   banner.innerHTML = '<div class="cookie-banner__mark">' + pizzaIcon() + '</div>' +
     '<div class="cookie-banner__copy"><h2 id="cookie-banner-title">Sütik és külső szolgáltatások</h2>' +
     '<p>A szükséges beállításokon túl a Google Analytics és a Google Maps csak a hozzájárulásod után indul el.</p>' +
-    '<a href="adatvedelem.html#sutik">Részletes sütitájékoztató</a></div>';
+    '<a href="/adatvedelem#sutik">Részletes sütitájékoztató</a></div>';
   var bannerActions = document.createElement("div");
   bannerActions.className = "cookie-actions";
   bannerActions.appendChild(button("Csak szükséges", "cookie-button cookie-button--quiet", "necessary"));
@@ -62,7 +62,7 @@
     '<div class="cookie-choice"><div><h3>Szükséges</h3><p>A választásod legfeljebb 12 hónapos megjegyzése. Mindig aktív.</p></div><span class="cookie-required">Mindig aktív</span></div>' +
     '<label class="cookie-choice"><span><strong>Google Analytics</strong><small>Névtelenített használati statisztika az oldal fejlesztéséhez. Csak a mérési azonosító beállítása után működik.</small></span><input type="checkbox" name="cookie-analytics"><i class="cookie-switch" aria-hidden="true"></i></label>' +
     '<label class="cookie-choice"><span><strong>Google Maps</strong><small>A beágyazott térkép betöltése. Engedélyezéskor adat kerülhet a Google-höz.</small></span><input type="checkbox" name="cookie-maps"><i class="cookie-switch" aria-hidden="true"></i></label>' +
-    '<a class="cookie-policy-link" href="adatvedelem.html#sutik">Részletes adatvédelmi és sütitájékoztató</a>';
+    '<a class="cookie-policy-link" href="/adatvedelem#sutik">Részletes adatvédelmi és sütitájékoztató</a>';
   var dialogActions = document.createElement("div");
   dialogActions.className = "cookie-actions cookie-actions--dialog";
   dialogActions.appendChild(button("Csak szükséges", "cookie-button cookie-button--quiet", "necessary"));

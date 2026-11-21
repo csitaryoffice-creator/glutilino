@@ -4,6 +4,29 @@
   scroll-margin-top: 104px;
 }
 
+/* Language switcher: intentionally positioned in the header's existing outer gap. */
+.language-switch {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  z-index: 65;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  transform: translateY(-50%);
+  transition: transform .22s ease, filter .22s ease;
+  filter: drop-shadow(0 4px 7px rgba(59, 44, 34, .18));
+}
+.language-switch:hover { transform: translateY(-50%) scale(1.06); }
+.language-switch svg { display: block; width: 42px; height: 42px; overflow: visible; }
+.language-switch-ring { fill: none; stroke: rgba(59, 44, 34, .6); stroke-width: 1.6; }
+
+@media (max-width: 1100px) {
+  .language-switch { right: 72px; width: 40px; height: 40px; }
+  .language-switch svg { width: 38px; height: 38px; }
+}
+
 @media (min-width: 761px) {
   body.menu-book-fullscreen-open .site-header {
     visibility: hidden !important;
@@ -187,6 +210,61 @@
     min-height: 38px !important;
     padding: 10px 13px !important;
   }
+}
+
+/* Bilingual UI refinements: hand-drawn rectangular flags and English mobile hero. */
+.language-switch {
+  width: 50px;
+  height: 36px;
+}
+.language-switch svg {
+  width: 48px;
+  height: 32px;
+  transform: rotate(-.35deg);
+}
+.language-switch-ring {
+  fill: none;
+  stroke: #ab4428;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.language-switch-sketch {
+  fill: none;
+  stroke: rgba(171, 68, 40, .62);
+  stroke-width: 1.35;
+  stroke-linecap: round;
+}
+.language-switch-detail {
+  fill: none;
+  stroke: rgba(171, 68, 40, .52);
+  stroke-width: .9;
+  stroke-linecap: round;
+}
+
+@media (min-width: 761px) and (max-width: 1100px) {
+  .language-switch { width: 44px; height: 32px; }
+  .language-switch svg { width: 42px; height: 28px; }
+}
+
+@media (max-width: 760px) {
+  /* On phones the menu sits to the left and the smaller flag at the far right. */
+  .language-switch {
+    right: 14px;
+    width: 36px;
+    height: 27px;
+  }
+  .language-switch svg {
+    width: 34px;
+    height: 23px;
+  }
+  .menu-toggle:not([hidden]) {
+    margin-left: auto !important;
+    margin-right: 42px !important;
+  }
+}
+
+@media (max-width: 380px), (max-height: 690px) {
 }
 
 /* v105: dairy-free menu labels */

@@ -6,10 +6,13 @@
 <meta http-equiv="Content-Security-Policy" content="default-src &#x27;self&#x27;; script-src &#x27;self&#x27; https://www.googletagmanager.com &#x27;sha256-Ov9Z1wcxmJk1yiwxKAOavHxxVjlBROKBOkN0x5L8jXU=&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27; data: https://www.google-analytics.com; font-src &#x27;self&#x27;; media-src &#x27;self&#x27;; connect-src &#x27;self&#x27; https://www.google-analytics.com https://region1.google-analytics.com; frame-src https://www.google.com; object-src &#x27;none&#x27;; base-uri &#x27;self&#x27;; form-action &#x27;none&#x27;">
 <title>glutiliNO | Gluténmentes pizzéria és pékség Budapest</title>
 <meta name="description" content="100% gluténmentes nápolyi pizzák, kézműves kenyerek és desszertek Budapesten, a XIII. kerületben. Fedezd fel a glutiliNO kínálatát és étlapját!">
-<meta name="robots" content="noindex,follow">
+<meta name="robots" content="index,follow">
 <meta name="theme-color" content="#F3ECE2">
 <meta name="google-analytics-id" content="">
 <link rel="canonical" href="https://www.glutilino.hu/">
+<link rel="alternate" hreflang="hu" href="https://www.glutilino.hu/">
+<link rel="alternate" hreflang="en" href="https://www.glutilino.hu/en/">
+<link rel="alternate" hreflang="x-default" href="https://www.glutilino.hu/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="hu_HU">
 <meta property="og:site_name" content="glutiliNO">
@@ -25,12 +28,12 @@
 <link rel="preload" href="assets/fonts/callonsky-web.otf?v=104" as="font" type="font/otf" crossorigin fetchpriority="high">
 <link rel="preload" href="assets/fonts/font-0.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/font-2.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/style.css?v=107">
+<link rel="stylesheet" href="assets/style.css?v=109">
 <link rel="stylesheet" href="assets/fixes-v94.css?v=102">
 <link rel="stylesheet" href="assets/fixes-v96.css?v=102">
 <link rel="stylesheet" href="assets/cookie-consent.css?v=3">
 <script src="assets/consent-default.js?v=2"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Restaurant","@id":"https://www.glutilino.hu/#etterem","name":"glutiliNO","description":"100% gluténmentes pizzéria és pékség Budapesten, nápolyi pizzákkal, kézműves kenyerekkel és desszertekkel.","url":"https://www.glutilino.hu/","image":"https://www.glutilino.hu/assets/social.jpg","telephone":"+36300743932","email":"glutilino@glutilino.hu","address":{"@type":"PostalAddress","streetAddress":"Párkány utca 8.","postalCode":"1138","addressLocality":"Budapest","addressCountry":"HU"},"servesCuisine":"Olasz","acceptsReservations":true,"hasMenu":"https://www.glutilino.hu/etlap.html","sameAs":["https://www.facebook.com/people/Glutilino/61583295550470/","https://www.tiktok.com/@glutilino"],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"11:00","closes":"22:00"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Restaurant","@id":"https://www.glutilino.hu/#etterem","name":"glutiliNO","description":"100% gluténmentes pizzéria és pékség Budapesten, nápolyi pizzákkal, kézműves kenyerekkel és desszertekkel.","url":"https://www.glutilino.hu/","image":"https://www.glutilino.hu/assets/social.jpg","telephone":"+36300743932","email":"glutilino@glutilino.hu","address":{"@type":"PostalAddress","streetAddress":"Párkány utca 8.","postalCode":"1138","addressLocality":"Budapest","addressCountry":"HU"},"servesCuisine":"Olasz","acceptsReservations":true,"hasMenu":"https://www.glutilino.hu/etlap","sameAs":["https://www.facebook.com/people/Glutilino/61583295550470/","https://www.tiktok.com/@glutilino"],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"11:00","closes":"22:00"}]}</script>
 <script src="assets/hero-font-ready.js?v=4" defer></script>
 <script src="assets/app.js?v=102" defer>
 </script>
@@ -39,7 +42,7 @@
 <body class="">
 <a class="skip" href="#tartalom">Ugrás a tartalomra</a>
 <header class="site-header">
-<a class="brand" href="index.html" aria-label="glutiliNO – főoldal">
+<a class="brand" href="/" aria-label="glutiliNO – főoldal">
 <img src="assets/logo.webp" width="180" height="102" alt="glutiliNO">
 </a>
 <button class="menu-toggle" aria-controls="navigation" aria-expanded="false" aria-label="Menü megnyitása" hidden>
@@ -53,14 +56,15 @@
 </span>
 </button>
 <nav id="navigation" aria-label="Fő navigáció" hidden>
-<a href="etlap.html" >Étlap</a>
-<a href="index.html#szakertelmunk">A pizzánk titka</a>
-<a href="index.html#rolunk">Történetünk</a>
+<a href="/etlap" >Étlap</a>
+<a href="/#szakertelmunk">A pizzánk titka</a>
+<a href="/#rolunk">Történetünk</a>
 <a href="#asztalfoglalas">Asztalfoglalás</a>
 <a href="#kapcsolat">Kapcsolat</a>
 <a class="nav-order" href="tel:+36300743932">Rendelek</a>
 </nav>
 <a class="header-cta" href="tel:+36300743932">Rendelek</a>
+<a class="language-switch" href="/en/" lang="en" hreflang="en" aria-label="English version" title="English version"><svg viewBox="0 0 76 50" aria-hidden="true"><defs><clipPath id="flag-en"><path d="M8 6.5 H68 Q71 6.5 71 9.5 V40.5 Q71 43.5 68 43.5 H8 Q5 43.5 5 40.5 V9.5 Q5 6.5 8 6.5 Z"/></clipPath></defs><g clip-path="url(#flag-en)"><path fill="#304f79" d="M0 0h76v50H0z"/><path stroke="#f4eee4" stroke-width="13" d="M-5 0 81 50M81 0-5 50"/><path stroke="#a84331" stroke-width="5.5" d="M-5 0 81 50M81 0-5 50"/><path stroke="#f4eee4" stroke-width="18" d="M38 0v50M0 25h76"/><path stroke="#a84331" stroke-width="9" d="M38 0v50M0 25h76"/></g><path class="language-switch-ring" d="M8 6.5 H68 Q71 6.5 71 9.5 V40.5 Q71 43.5 68 43.5 H8 Q5 43.5 5 40.5 V9.5 Q5 6.5 8 6.5 Z"/></svg></a>
 </header>
 <main id="tartalom">
 <section class="hero hero-brand" aria-labelledby="hero-title">
@@ -77,7 +81,7 @@
 <strong>Készen állsz a gluténmentes forradalomra?</strong>
 </p>
 <div class="hero-actions">
-<a class="button hero-primary" href="etlap.html">Kínálat megtekintése</a>
+<a class="button hero-primary" href="/etlap">Kínálat megtekintése</a>
 <a class="button hero-secondary" href="tel:+36300743932">Rendelés telefonon</a>
 </div>
 </div>
@@ -106,7 +110,7 @@
 </div>
 </div>
 <div class="category-grid">
-<a class="category cat-pizza" href="etlap.html#pizza">
+<a class="category cat-pizza" href="/etlap#pizza">
 <div class="image-window">
 <img src="assets/pizza-champion-retro-1793812296919.webp" width="1621" height="1080" alt="Pizza Champion a glutiliNO kínálatából" loading="lazy" decoding="async">
 </div>
@@ -114,7 +118,7 @@
 <h3>Pizzák</h3>
 </div>
 </a>
-<a class="category cat-appetizers" href="etlap.html#eloetelek">
+<a class="category cat-appetizers" href="/etlap#eloetelek">
 <div class="image-window">
 <img src="assets/eloetel-caprese-di-bufala.webp" width="1621" height="1080" alt="Előételek és saláták a glutiliNO kínálatából" loading="lazy" decoding="async">
 </div>
@@ -122,7 +126,7 @@
 <h3>Előételek, saláták</h3>
 </div>
 </a>
-<a class="category cat-sandwiches" href="etlap.html#szendvicsek">
+<a class="category cat-sandwiches" href="/etlap#szendvicsek">
 <div class="image-window">
 <img src="assets/panuozzo-crudo-e-bufala.webp" width="1621" height="1080" alt="Szendvicsek a glutiliNO kínálatából" loading="lazy" decoding="async">
 </div>
@@ -130,7 +134,7 @@
 <h3>Szendvicsek</h3>
 </div>
 </a>
-<a class="category cat-pastry" href="etlap.html#peksutemeny">
+<a class="category cat-pastry" href="/etlap#peksutemeny">
 <div class="image-window">
 <img class="" src="assets/peksutemeny-800.webp" srcset="assets/peksutemeny-480.webp 480w, assets/peksutemeny-800.webp 800w, assets/peksutemeny-1280.webp 1280w" sizes="(max-width: 650px) 100vw, (max-width: 1000px) 50vw, 640px" width="1280" height="853" alt="Péksütemények a glutiliNO kínálatából" loading="lazy" decoding="async">
 </div>
@@ -138,7 +142,7 @@
 <h3>Péksütemények</h3>
 </div>
 </a>
-<a class="category cat-bread" href="etlap.html#kenyer">
+<a class="category cat-bread" href="/etlap#kenyer">
 <div class="image-window">
 <img class="" src="assets/magvas-kenyer-800.webp" srcset="assets/magvas-kenyer-480.webp 480w, assets/magvas-kenyer-800.webp 800w, assets/magvas-kenyer-1280.webp 1280w" sizes="(max-width: 650px) 100vw, (max-width: 1000px) 50vw, 640px" width="1280" height="853" alt="Kézműves kenyerek a glutiliNO kínálatából" loading="lazy" decoding="async">
 </div>
@@ -146,7 +150,7 @@
 <h3>Kézműves kenyerek</h3>
 </div>
 </a>
-<a class="category cat-dessert" href="etlap.html#desszert">
+<a class="category cat-dessert" href="/etlap#desszert">
 <div class="image-window">
 <img class="" src="assets/macaron-800.webp" srcset="assets/macaron-480.webp 480w, assets/macaron-800.webp 800w, assets/macaron-1280.webp 1280w" sizes="(max-width: 650px) 100vw, (max-width: 1000px) 50vw, 640px" width="1280" height="853" alt="Desszertek a glutiliNO kínálatából" loading="lazy" decoding="async">
 </div>
@@ -456,11 +460,11 @@
 <footer class="footer">
 <div class="footer-layout">
 <nav class="footer-links" aria-label="Jogi információk">
-<a href="adatvedelem.html">Adatvédelmi tájékoztató</a>
-<a href="impresszum.html">Impresszum</a>
+<a href="/adatvedelem">Adatvédelmi tájékoztató</a>
+<a href="/impresszum">Impresszum</a>
 </nav>
 <div class="footer-center">
-<a href="index.html" aria-label="glutiliNO – főoldal">
+<a href="/" aria-label="glutiliNO – főoldal">
 <img class="footer-logo" src="assets/logo.webp" width="175" height="99" alt="glutiliNO" loading="lazy">
 </a>
 <div class="footer-credit">

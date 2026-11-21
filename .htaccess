@@ -2,6 +2,23 @@
 Options -Indexes
 DirectoryIndex index.html
 ErrorDocument 404 /404.html
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# A közvetlenül kért index.html a saját könyvtárának tiszta URL-jére mutasson.
+RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html(?:[?\s]) [NC]
+RewriteRule ^(.*/)?index\.html$ /$1 [R=301,L,NE]
+
+# A régi .html URL-ek 301-es átirányítása a tiszta URL-re.
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html(?:[?\s]) [NC]
+RewriteRule ^(.+)\.html$ /$1 [R=301,L,NE]
+
+# A tiszta URL-ek belső kiszolgálása a meglévő HTML-fájlokból.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^(.+)$ $1.html [L]
+</IfModule>
 <IfModule mod_headers.c>
 Header always set X-Content-Type-Options "nosniff"
 Header always set Referrer-Policy "strict-origin-when-cross-origin"
